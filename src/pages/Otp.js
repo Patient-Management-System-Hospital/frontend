@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import img from "../images/Group 1116602997.png"
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Otp = () => {
+    const [enteredOtp, setEnteredOtp] = useState('');
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const { otp, email } = location.state;
+
+  const verifyOTP = (e) => {
+    e.preventDefault();
+    if (enteredOtp === otp) {
+      alert('OTP verified successfully!');
+      navigate('/reset-password', { state: { email } });
+    } else {
+      alert('Invalid OTP, please try again.');
+    }
+  };
+
   return (
     <div>
        <div className="w-full mx-auto bg-white rounded-lg shadow-lg flex items-center">
@@ -10,12 +27,18 @@ const Otp = () => {
                         <h2 className="text-2xl font-bold text-gray-800 mb-4">Enter OTP</h2>
                         <p className="text-gray-600 mb-6">Please enter the 6 digit code that send to your phone number.</p>
                         <div className="flex space-x-2 mb-6 ">
-                            <input type="text" className="w-12 h-12 border rounded-lg text-center text-xl" maxLength="1" />
-                            <input type="text" className="w-12 h-12 border rounded-lg text-center text-xl" maxLength="1" />
-                            <input type="text" className="w-12 h-12 border rounded-lg text-center text-xl" maxLength="1" />
-                            <input type="text" className="w-12 h-12 border rounded-lg text-center text-xl" maxLength="1" />
-                            <input type="text" className="w-12 h-12 border rounded-lg text-center text-xl" maxLength="1" />
-                            <input type="text" className="w-12 h-12 border rounded-lg text-center text-xl" maxLength="1" />
+                            <input type="text" className="w-12 h-12 border rounded-lg text-center text-xl" maxLength="1"  value={enteredOtp}
+              onChange={(e) => setEnteredOtp(e.target.value)} />
+                            <input type="text" className="w-12 h-12 border rounded-lg text-center text-xl" maxLength="1"  value={enteredOtp}
+                            onChange={(e) => setEnteredOtp(e.target.value)} />
+                            <input type="text" className="w-12 h-12 border rounded-lg text-center text-xl" maxLength="1"  value={enteredOtp}
+              onChange={(e) => setEnteredOtp(e.target.value)} />
+                            <input type="text" className="w-12 h-12 border rounded-lg text-center text-xl" maxLength="1"  value={enteredOtp}
+              onChange={(e) => setEnteredOtp(e.target.value)} />
+                            <input type="text" className="w-12 h-12 border rounded-lg text-center text-xl" maxLength="1"  value={enteredOtp}
+              onChange={(e) => setEnteredOtp(e.target.value)} />
+                            <input type="text" className="w-12 h-12 border rounded-lg text-center text-xl" maxLength="1"  value={enteredOtp}
+              onChange={(e) => setEnteredOtp(e.target.value)} />
                         </div>
                         <div className="flex items-center justify-between mb-6">
                             <div className="flex items-center text-gray-600">

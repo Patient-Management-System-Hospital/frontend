@@ -1,11 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import img from "../assets/Group 1116603021.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import userEvent from "@testing-library/user-event";
 
 const Login = () => {
-  const getValue = () => {};
 
-  const submitData = () => {};
+    let [loginUser,setLoginUer] = useState({});
+    let [registerUser,setRegisterUser] = useState([]);
+    let navigate  = useNavigate()
+
+
+  const getValue = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    setLoginUer({...loginUser,[name]:value});
+  };
+
+  useEffect(()=>{
+    const getRegisterUser = async ()=>{
+       const res = await axios.get("http://localhost:3000/data")
+       setRegisterUser(res.data)
+    //    console.log(registerUser);
+       
+    }
+    getRegisterUser()
+},[])
+console.log(registerUser)
+
+  const submitUser = () => {
+    const login = registerUser.some((v)=>v.email === loginUser.email && v.pass === loginUser.pass);
+    if(login){
+        alert("loged in")
+        axios.post("http://localhost:3000/loginUser",loginUser);
+        navigate("/dashboard")
+    }
+  };
 
   return (
     <>
@@ -13,19 +43,19 @@ const Login = () => {
                     <div className="w-1/2 flex items-center justify-center">
                         <div className="bg-white p-8 rounded-lg shadow-md w-auto">
                             <h2 className="text-2xl font-semibold mb-6">Login</h2>
-                            <form>
+                            <form method="post" onSubmit={(e)=>submitUser(e)}>
                                 <div className="mb-4">
                                     <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="email">
                                         Email or Phone<span className="text-red-500">*</span>
                                     </label>
-                                    <input className="shadow appearance-none border rounded w-[550px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Enter Email or Phone Number" />
+                                    <input name="email" className="shadow appearance-none border rounded w-[550px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Enter Email or Phone Number" onChange={(e)=>getValue(e)} />
                                 </div>
                                 <div className="mb-4">
                                     <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="password">
                                         Password<span className="text-red-500">*</span>
                                     </label>
                                     <div className="relative">
-                                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Enter Password" />
+                                        <input name="pass" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Enter Password" onChange={(e)=>getValue(e)} />
                                         <i className="fas fa-eye absolute right-3 top-3 text-gray-500"></i>
                                     </div>
                                 </div>
@@ -39,7 +69,7 @@ const Login = () => {
                                     </Link>
                                 </div>
                                 <div className="mb-4">
-                                    <button  className="w-full bg-blue-500 font-semibold text-white py-2 rounded-md hover:bg-blue-600" type="button">
+                                    <button  className="w-full bg-blue-500 font-semibold text-white py-2 rounded-md hover:bg-blue-600" type="submit">
                                         Login
                                     </button>
                                 </div>
@@ -63,6 +93,6 @@ const Login = () => {
                 </div>
     </>
   );
-};
+}
 
 export default Login;

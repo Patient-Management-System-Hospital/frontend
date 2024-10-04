@@ -2,6 +2,7 @@ import { useState } from "react";
 import img from "../assets/Group 1116603021.png";
 import vector from "../assets/Vector 2.png";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({});
@@ -12,9 +13,18 @@ const Register = () => {
     setRegisterData({ ...registerData, [name]: value });
   };
 
-  const submitData = (e) => {
+  const submitData = async (e) => {
     e.preventDefault();
-    console.log(registerData);
+    try{
+      const res = await axios.post("http://localhost:3000/data", registerData);
+      alert("success")
+    console.log(res.data);
+    }
+    catch(error){
+        console.log(error)
+    }
+    
+    
   };
 
   return (
@@ -168,7 +178,7 @@ const Register = () => {
             >
               Register
             </button>
-          </form>
+          </form>   
           <p className="mt-4 text-center text-sm">
             Already have an account?{" "}
             <Link to={"/login"} className="font-semibold text-blue-500 hover:text-blue-800">
