@@ -28,20 +28,20 @@ const DashBoard = () => {
           </div>
         </div>
         <nav className="mt-10">
-          <a
-            href="#"
+          <Link
+            to={"/dashboard"}
             className="flex items-center py-2 px-6 bg-blue-50 text-blue-600"
           >
             <i className="fas fa-tachometer-alt mr-3"></i>
             Dashboard
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to={"/doctorMangement"}
             className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
           >
             <i className="fas fa-user-md mr-3"></i>
             Doctor Management
-          </a>
+          </Link>
           <a
             href="#"
             className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
