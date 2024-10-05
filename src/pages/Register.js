@@ -1,6 +1,5 @@
 import { useState } from "react";
-import img from "../assets/Group 1116603021.png";
-import vector from "../assets/Vector 2.png";
+import img from "../images/Group 1116603021.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -41,10 +40,10 @@ const Register = () => {
                 <input
                   type="text"
                   placeholder="Enter First Name"
-                  name="FistName"
+                  name="FirstName"
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   onChange={(e)=>getValue(e)}
-                />
+                />  
               </div>
               <div className="w-full">
                 <label className="block text-sm font-medium mb-1">
@@ -90,7 +89,7 @@ const Register = () => {
                 <label className="block text-sm font-medium mb-1">
                   Country<span className="text-red-500">*</span>
                 </label>
-                <select name="Selecct Country" className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={(e)=>getValue(e)}>
+                <select name="Country" className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={(e)=>getValue(e)}>
                   <option>Select Country</option>
                   <option value={"India"}>India</option>
                 </select>
@@ -99,7 +98,7 @@ const Register = () => {
                 <label className="block text-sm font-medium mb-1">
                   State<span className="text-red-500">*</span>
                 </label>
-                <select name="Select State" className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={(e)=>getValue(e)}>
+                <select name="State" className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={(e)=>getValue(e)}>
                   <option>Select State</option>
                   <option value={"GUJARAT"}>Gujarat</option>
                 </select>
@@ -113,6 +112,21 @@ const Register = () => {
                   <option value={"Surat"}>Surat</option>
                 </select>
               </div>
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1">
+                Gender<span className="text-red-500">*</span>
+              </label>
+              <select
+                name="Gender"
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                onChange={(e) => getValue(e)}
+              >
+                <option>Select Gender</option>
+                <option value={"Male"}>Male</option>
+                <option value={"Female"}>Female</option>
+                <option value={"Other"}>Other</option>
+              </select>
             </div>
             <div className="mb-4">
               <label className="block text-sm font-medium mb-1">
@@ -153,6 +167,7 @@ const Register = () => {
                 <i className="fas fa-eye absolute right-3 top-3 text-gray-500 cursor-pointer" />
               </div>
             </div>
+            
             <div className="mb-4">
               <label className="inline-flex items-center">
                 <input

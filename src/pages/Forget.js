@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import img from "../images/Group 1116602997.png";
-import { getValue } from "@testing-library/user-event/dist/utils";
 
 const Forget = () => {  
 
@@ -10,17 +9,19 @@ const Forget = () => {
   let navigate = useNavigate()
 
   const generateOTP = () => {
-    const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
     setOtp(otp);
-    alert(`Your OTP is: ${otp}`); // Normally, you'd send this via email/SMS
+    alert(`Your OTP is: ${otp}`);
+
+    setTimeout(() => {
+      navigate("/otp", { state: { otp, email } });
+    }, 0);
   };
 
   const submitData = (e) => {
     e.preventDefault();
     if (email) {
       generateOTP();
-      // Navigate to OTP verification page, passing the OTP and email
-      navigate("/otp", { state: { otp, email } });
     } else {
       alert("Please enter a valid email.");
     }

@@ -1,4 +1,3 @@
-
 import Navbar from "./componets/Navbar";
 import Forget from "./pages/Forget";
 import Login from "./pages/Login";
@@ -7,6 +6,11 @@ import Register from "./pages/Register";
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import ResetPassword from "./pages/ResetPassword";
 import DashBoard from "./pages/DashBoard";
+import EditProfile from "./pages/EditProfile";
+import ChangePass from "./pages/ChangePass";
+import TermCondition from "./pages/TermCondition";
+import Privacy from "./pages/Privacy";
+import DoctorManagement from "./pages/DoctorManagement";
 
 function App() {
   return (
@@ -18,10 +22,16 @@ function App() {
         <Route path="/otp" element={<Otp/>}/>
         <Route path="/reset" element={<ResetPassword/>}/>
         <Route path="/dashboard" element={<DashBoard/>}/>
+        <Route path="/edit" element={<EditProfile/>}/>
+        <Route path="/changePass" element={<ChangePass/>}/>
+        <Route path="/terms" element={<TermCondition/>}/>
+        <Route path="/privacy" element={<Privacy/>}/>
+        <Route path="/doctorMangemet" element={<DoctorManagement/>}/>
       </Routes>
     </BrowserRouter>
     
   );
 }
+
 
 export default App;

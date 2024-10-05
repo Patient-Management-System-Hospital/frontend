@@ -1,7 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import img from "../images/Group 1116602997.png";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ResetPassword = () => {
+
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation()
+
+  const { email } = location.state;
+  
+
+  const handleSubmit = async () => {
+    if (newPassword !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await axios.get(`http://localhost:3000/data?email=${email}`);
+      const user = response.data[0];
+
+      if (user) {
+        await axios.put(`http://localhost:3000/data/${user.id}`, {
+          ...user,
+          pass: newPassword,
+          ConfirmPass:confirmPassword,
+        });
+        alert("Password reset successfully!");
+        navigate("/login");
+      } else {
+        console.log("something wrong");
+        
+      }
+    } catch (error) {
+      console.error("Error updating password:", error);
+    }
+  };
+
   return (
     <div>
       <div className="flex h-screen">
@@ -22,7 +60,8 @@ const ResetPassword = () => {
                   id="new-password"
                   type="password"
                   placeholder="Enter New Password"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
                 />
                 <i className="fas fa-eye absolute right-3 top-3 text-gray-500"></i>
               </div>
@@ -39,7 +78,8 @@ const ResetPassword = () => {
                   id="confirm-password"
                   type="password"
                   placeholder="Enter Confirm Password"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
                 <i className="fas fa-eye absolute right-3 top-3 text-gray-500"></i>
               </div>
@@ -47,6 +87,7 @@ const ResetPassword = () => {
             <button
               className="bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
               type="button"
+              onClick={handleSubmit}
             >
               Reset Password
             </button>

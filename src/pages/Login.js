@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import img from "../assets/Group 1116603021.png"
+import img from "../images/Group 1116603021.png"
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import userEvent from "@testing-library/user-event";
 
 const Login = () => {
 
@@ -20,20 +19,18 @@ const Login = () => {
   useEffect(()=>{
     const getRegisterUser = async ()=>{
        const res = await axios.get("http://localhost:3000/data")
-       setRegisterUser(res.data)
-    //    console.log(registerUser);
-       
+       setRegisterUser(res.data)  
     }
-    getRegisterUser()
+    getRegisterUser()   
 },[])
 console.log(registerUser)
 
   const submitUser = () => {
-    const login = registerUser.some((v)=>v.email === loginUser.email && v.pass === loginUser.pass);
-    if(login){
+    const user = registerUser.find ((v)=>v.email === loginUser.email && v.pass === loginUser.pass);
+    if(user){
         alert("loged in")
         axios.post("http://localhost:3000/loginUser",loginUser);
-        navigate("/dashboard")
+        navigate("/dashboard", { state: { user } });
     }
   };
 
