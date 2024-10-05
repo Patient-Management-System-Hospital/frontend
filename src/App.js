@@ -11,6 +11,7 @@ import ChangePass from "./pages/ChangePass";
 import TermCondition from "./pages/TermCondition";
 import Privacy from "./pages/Privacy";
 import DoctorManagement from "./pages/DoctorManagement";
+import AddDoctor from "./pages/AddDoctor";
 
 function App() {
   return (
@@ -26,7 +27,8 @@ function App() {
         <Route path="/changePass" element={<ChangePass/>}/>
         <Route path="/terms" element={<TermCondition/>}/>
         <Route path="/privacy" element={<Privacy/>}/>
-        <Route path="/doctorMangemet" element={<DoctorManagement/>}/>
+        <Route path="/doctorMangement" element={<DoctorManagement/>}/>
+        <Route path="/addDoc" element={<AddDoctor/>}/>
       </Routes>
     </BrowserRouter>
     
