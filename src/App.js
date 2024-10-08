@@ -12,6 +12,7 @@ import TermCondition from "./pages/TermCondition";
 import Privacy from "./pages/Privacy";
 import DoctorManagement from "./pages/DoctorManagement";
 import AddDoctor from "./pages/AddDoctor";
+import Patient from "./pages/Patient";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/privacy" element={<Privacy/>}/>
         <Route path="/doctorMangement" element={<DoctorManagement/>}/>
         <Route path="/addDoc" element={<AddDoctor/>}/>
+        <Route path="/patient" element={<Patient/>}/>
       </Routes>
     </BrowserRouter>
     

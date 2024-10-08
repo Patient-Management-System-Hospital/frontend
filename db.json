@@ -27,9 +27,6 @@
       "id": "2a7d"
     },
     {
-      "id": "c2b9"
-    },
-    {
       "id": "dcd8",
       "FirstName": "parash",
       "LastName": "gohil",
@@ -157,6 +154,27 @@
       "hospitaladdress": "testing",
       "link": "testing",
       "emergencynum": "108"
+    }
+  ],
+  "patientData": [
+    {
+      "id": "1de1",
+      "firstName": "tilak",
+      "lastName": "varma",
+      "email": "tilak@gmail.com",
+      "number": "123476442",
+      "age": "31",
+      "height": "52",
+      "weight": "66",
+      "gender": "male",
+      "bloodgroup": "AB+",
+      "dob": "2001-02-06",
+      "country": "India",
+      "state": "gujarat",
+      "city": "Surat",
+      "add": "testing",
+      "pass": "123",
+      "ConfirmPass": "123"
     }
   ]
 }
