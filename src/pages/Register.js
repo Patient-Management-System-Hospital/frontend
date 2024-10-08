@@ -1,21 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import img from "../images/Group 1116603021.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
-
+  
   const [registerData, setRegisterData] = useState({});
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 const [showModal, setShowModal] = useState(false);
+const [newHospital, setNewHospital] = useState({})
+const [hospitalData,setHospitalData] = useState([])
 
   const getValue = (e) => {
     const name = e.target.name;
     const value = e.target.value;
 
     setRegisterData({ ...registerData, [name]: value });
-
+    
     if (name === "FirstName") {
       if (value === "") {
         setErrors({ ...errors, FirstNameError: "First Name Is Required" });
@@ -67,6 +69,9 @@ const [showModal, setShowModal] = useState(false);
     } else if (name === "Hospital") {
       if (value === "") {
         setErrors({ ...errors, HospitalError: "Please Select Your Hospital" });
+      }
+      else if(value === "add"){
+          setShowModal(true)
       }
       else {
         setErrors({ ...errors, HospitalError: "" });
@@ -157,6 +162,36 @@ const [showModal, setShowModal] = useState(false);
     }
   };
 
+  const hospitalValue = (e)=>{
+    let name =  e.target.name
+    let value= e.target.value
+    setNewHospital({...newHospital,[name]:value})
+  }
+
+  const saveSubmitData = (e)=>{
+    e.preventDefault()
+     console.log(newHospital);
+     try {
+      axios.post("http://localhost:3000/hopital",newHospital)
+      setNewHospital({})
+     } catch (error) {
+      console.log(error)
+     }
+  }
+
+  const handleCloseModal = ()=>{
+    setShowModal(false)
+  }
+
+  useEffect(()=>{
+        getHospitalData()
+  },[])
+
+  const getHospitalData = async()=>{
+      const result = await axios.get("http://localhost:3000/hopital")
+      setHospitalData(result.data)
+  }
+ console.log(hospitalData)
   return (
     <>
       <div className="flex justify-center items-center min-h-screen">
@@ -333,7 +368,7 @@ const [showModal, setShowModal] = useState(false);
                 </span>
               </div>
             </div>
-            <div className="Omb-4">
+            <div className="+`+b-4">
               <label className="block text-sm font-medium mb-1">
                 Gender<span className="text-red-500">*</span>
               </label>
@@ -356,7 +391,7 @@ const [showModal, setShowModal] = useState(false);
                 <option value={"Other"}>Other</option>
               </select>
               <span className="text-red-500 font-semibold">
-                {errors.GenMderError ? errors.GenderError : ""}
+                {errors.GenderError ? errors.GenderError : ""}
               </span>
             </div>
             <div className="mb-4 relative">
@@ -378,9 +413,17 @@ const [showModal, setShowModal] = useState(false);
               >
                 <option>Select Hospital</option>
                 <option value={"Kiraan Hospitaal"}>Kiran Hosspital</option>    
-                <option value={"button"}>
-                
-                  </option>    
+                {hospitalData.map((v,i)=>{
+                  return(
+                    <>
+                    <option value={v.hospitalName}>{v.hospitalName}</option>
+                    </>
+                  )
+                })}
+                <option value="add" className="text-blue-500">
+          + Add New Hospital
+        </option>
+                    
               </select>
               <span className="text-red-500 font-semibold">
                 {errors.HospitalError ? errors.HospitalError : ""}
@@ -510,7 +553,118 @@ const [showModal, setShowModal] = useState(false);
           </p>
         </div>
       </div>
-      
+      {showModal && (
+        <div
+          className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center"
+          onClick={handleCloseModal}
+        >
+          <div
+            className="bg-white p-6 rounded shadow-lg w-96 relative"
+            onClick={(e) => e.stopPropagation()} 
+          >
+            <span
+              className="absolute top-2 right-2 text-gray-600 cursor-pointer"
+              onClick={handleCloseModal}
+            >
+              &times;
+            </span>
+            <h2 className="text-xl font-semibold mb-4">Create Hospital</h2>
+            <form onSubmit={(e)=>saveSubmitData(e)}>
+              <div className="mb-4">
+                <label className="block text-sm mb-2" htmlFor="hospitalName">
+                  Hospital Name
+                </label>
+                <input
+                  type="text"
+                  id="hospitalName"
+                  name="hospitalName"
+                  placeholder="Enter Hospital Name"
+                  value={newHospital.hospitalName?newHospital.hospitalName:""}
+                  onChange={(e) => hospitalValue(e) }
+                  className="w-full p-2 border border-gray-300 rounded"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-sm mb-2" htmlFor="hospitalAddress">
+                  Hospital Address
+                </label>
+                <input
+                  type="text"
+                  id="hospitalAddress"
+                  name="hospitalAdd"
+                  placeholder="Enter Hospital Address"
+                  value={newHospital.hospitalAdd?newHospital.hospitalAdd:""}
+                  onChange={(e) =>hospitalValue(e) }
+                  className="w-full p-2 border border-gray-300 rounded"
+                  required
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+              <div className="mb-4">
+                <label className="block text-sm mb-2" htmlFor="hospitalAddress">
+                 Country
+                </label>
+                <select name="contry" value={newHospital.contry?newHospital.contry:""} onChange={(e)=>hospitalValue(e)} className="w-full p-2 border border-gray-300 rounded">
+                  <option>Select Country</option>
+                  <option value={"India"}>India</option>
+                </select>
+                
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm mb-2" htmlFor="hospitalAddress">
+                  State
+                </label>
+                <select name="state" value={newHospital.state?newHospital.state:""} onChange={(e)=>hospitalValue(e)} className="w-full p-2 border border-gray-300 rounded">
+                  <option>Select State</option>
+                  <option value={"Gujarat"}>Gujarat</option>
+                </select>
+                
+              </div>
+                </div>  
+                <div className="grid grid-cols-2 gap-4">
+              <div className="mb-4">
+                <label className="block text-sm mb-2" htmlFor="hospitalAddress">
+                 City
+                </label>
+                <select name="city" value={newHospital.city?newHospital.city:""} onChange={(e)=>hospitalValue(e)}  className="w-full p-2 border border-gray-300 rounded">
+                  <option className="text-[#A7A7A7]">Select City</option>
+                  <option value={"Surat"}>Surat</option>
+                  <option value={"Vadodara"}>Vadodara</option>
+                  <option value={"Rajkot"}>Rajkot</option>
+                  <option value={"Ahemadabad"}>Ahemadabad</option>
+                </select>
+              </div>
+              <div className="mb-4 ">
+                <label className="block text-sm mb-2" htmlFor="hospitalAddress">
+                  Zip Code
+                </label>
+                <input
+                  type="text"
+                  id="hospitalAddress"
+                  placeholder="Enter Zip Code"
+                  name="zipcode"
+                  value={newHospital.zipcode?newHospital.zipcode:""}
+                  onChange={(e) =>hospitalValue(e)}
+                  className="w-full p-2 border border-gray-300 rounded "
+                  required
+                />
+              </div>
+                </div>  
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 };

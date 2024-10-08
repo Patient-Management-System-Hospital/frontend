@@ -21,7 +21,11 @@ const ResetPassword = () => {
 
     try {
       const response = await axios.get(`http://localhost:3000/data?email=${email}`);
+
+      const result = await axios.get(`http://localhost:3000/patientData?email=${email}`)
+
       const user = response.data[0];
+      const patient = result.data[0]
 
       if (user) {
         await axios.put(`http://localhost:3000/data/${user.id}`, {
@@ -31,7 +35,17 @@ const ResetPassword = () => {
         });
         alert("Password reset successfully!");
         navigate("/login");
-      } else {
+      }
+      else if(patient){
+        await axios.put(`http://localhost:3000/patientData/${patient.id}`,{
+          ...patient,
+          pass: newPassword,
+          ConfirmPass:confirmPassword
+        })
+        alert("Password reset successfully!");
+        navigate("/login");
+      }
+      else {
         console.log("something wrong");
         
       }
