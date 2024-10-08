@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
+
   const [registerData, setRegisterData] = useState({});
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+const [showModal, setShowModal] = useState(false);
 
   const getValue = (e) => {
     const name = e.target.name;
@@ -65,7 +67,8 @@ const Register = () => {
     } else if (name === "Hospital") {
       if (value === "") {
         setErrors({ ...errors, HospitalError: "Please Select Your Hospital" });
-      } else {
+      }
+      else {
         setErrors({ ...errors, HospitalError: "" });
       }
     } else if (name === "pass") {
@@ -146,6 +149,7 @@ const Register = () => {
         );
         alert("Registration Successful");
         setErrors({});
+        setRegisterData({})
         console.log(res.data);
       } catch (error) {
         console.log(error);
@@ -168,6 +172,7 @@ const Register = () => {
                   type="text"
                   placeholder="Enter First Name"
                   name="FirstName"
+                  value={registerData.FirstName?registerData.FirstName:""}
                   className={`w-full px-3 py-2 border-2 rounded-md 
                     ${
                       errors.FirstNameError
@@ -190,6 +195,7 @@ const Register = () => {
                   type="text"
                   placeholder="Enter Last Name"
                   name="LastName"
+                  value={registerData.LastName?registerData.LastName:""}
                   className={`w-full px-3 py-2 border-2 rounded-md 
                     ${
                       errors.LastNameError
@@ -214,6 +220,7 @@ const Register = () => {
                   type="email"
                   placeholder="Enter Email Address"
                   name="email"
+                  value={registerData.email?registerData.email:""}
                   className={`w-full px-3 py-2 border-2 rounded-md 
                     ${
                       errors.emailError
@@ -236,6 +243,7 @@ const Register = () => {
                   type="text"
                   placeholder="Enter Phone Number"
                   name="number"
+                  value={registerData.number?registerData.number:""}
                   className={`w-full px-3 py-2 border-2 rounded-md 
                     ${
                       errors.numberError
@@ -258,6 +266,7 @@ const Register = () => {
                 </label>
                 <select
                   name="Country"
+                  value={registerData.Country?registerData.Country:""}
                   className={`w-full px-3 py-2 border-2 rounded-md 
                     ${
                       errors.CountryError
@@ -281,6 +290,7 @@ const Register = () => {
                 </label>
                 <select
                   name="State"
+                  value={registerData.State?registerData.State:""}
                   className={`w-full px-3 py-2 border-2 rounded-md 
                     ${
                       errors.StateError
@@ -304,6 +314,7 @@ const Register = () => {
                 </label>
                 <select
                   name="City"
+                  value={registerData.City?registerData.City:""}
                   className={`w-full px-3 py-2 border-2 rounded-md 
                     ${
                       errors.CityError
@@ -322,12 +333,13 @@ const Register = () => {
                 </span>
               </div>
             </div>
-            <div className="mb-4">
+            <div className="Omb-4">
               <label className="block text-sm font-medium mb-1">
                 Gender<span className="text-red-500">*</span>
               </label>
               <select
                 name="Gender"
+                value={registerData.Gender?registerData.Gender:""}
                 className={`w-full px-3 py-2 border-2 rounded-md 
                   ${
                     errors.GenderError
@@ -344,15 +356,16 @@ const Register = () => {
                 <option value={"Other"}>Other</option>
               </select>
               <span className="text-red-500 font-semibold">
-                {errors.GenderError ? errors.GenderError : ""}
+                {errors.GenMderError ? errors.GenderError : ""}
               </span>
             </div>
-            <div className="mb-4">
+            <div className="mb-4 relative">
               <label className="block text-sm font-medium mb-1">
                 Select Hospital<span className="text-red-500">*</span>
               </label>
               <select
                 name="Hospital"
+                value={registerData.Hospital?registerData.Hospital:""}
                 className={`w-full px-3 py-2 border-2 rounded-md 
                   ${
                     errors.HospitalError
@@ -364,11 +377,15 @@ const Register = () => {
                 onChange={(e) => getValue(e)}
               >
                 <option>Select Hospital</option>
-                <option value={"Kiraan Hospitaal"}>Kiran Hosspital</option>
+                <option value={"Kiraan Hospitaal"}>Kiran Hosspital</option>    
+                <option value={"button"}>
+                
+                  </option>    
               </select>
               <span className="text-red-500 font-semibold">
                 {errors.HospitalError ? errors.HospitalError : ""}
               </span>
+             
             </div>
             <div className="mb-4">
               <label className="block text-sm font-medium mb-1">
@@ -379,6 +396,7 @@ const Register = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter Password"
                   name="pass"
+                  value={registerData.pass?registerData.pass:""}
                   className={`w-full px-3 py-2 border-2 rounded-md 
                     ${
                       errors.passError
@@ -409,6 +427,7 @@ const Register = () => {
                  type={showPassword ? "text" : "password"}
                   placeholder="Enter Confirm Password"
                   name="ConfirmPass"
+                  value={registerData.confirmPass?registerData.FirstName:""}
                   className={`w-full px-3 py-2 border-2 rounded-md 
                     ${
                       errors.ConfirmPassError
@@ -430,7 +449,7 @@ const Register = () => {
                 {errors.ConfirmPassError ? errors.ConfirmPassError : ""}
               </span>
             </div>
-
+            
             <div className="mb-4">
               <label className="inline-flex items-center">
                 <input
@@ -472,6 +491,12 @@ const Register = () => {
               Login
             </Link>
           </p>
+          <Link
+              to={"/patient"}
+              className="w-full bg-blue-500 text-white py-4  px-3   rounded-md hover:bg-blue-600"
+            >
+              Patient Register
+            </Link>
         </div>
         <div className="hidden lg:flex flex-col items-center justify-center ml-16">
           <img
@@ -485,6 +510,7 @@ const Register = () => {
           </p>
         </div>
       </div>
+      
     </>
   );
 };
