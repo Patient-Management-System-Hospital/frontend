@@ -108,3 +108,84 @@
     color: #0eabeb;
   }
    */
+   .container {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Lato', sans-serif;
+  }
+  
+  .header-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-photo {
+    border-radius: 50%;
+  }
+  
+  .navigation ul {
+    list-style-type: none;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .btn-blue {
+    background-color: #0eabeb;
+    color: #fff;
+  }
+  
+  .btn-gray {
+    background-color: #d3d3d3;
+    color: #141414;
+  }
+  
+  .section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .form-group {
+    display: flex;
+    margin-top: 20px;
+  }
+  
+  .upload-logo {
+    margin-right: 20px;
+  }
+  
+  .logo-placeholder {
+    position: relative;
+  }
+  
+  .logo-placeholder button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  input {
+    padding: 10px;
+    border: 1px solid #a7a7a7;
+    border-radius: 10px;
+    width: 100%;
+  }

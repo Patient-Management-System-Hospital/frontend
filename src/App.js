@@ -34,6 +34,33 @@ function App() {
     
   );
 }
+const validate = () => {
+  let tempErrors = {};
+
+  // if (!registerData.FirstName) tempErrors.FirstName = "First Name is required";
+  // if (!registerData.LastName) tempErrors.LastName = "Last Name is required";
+  // if (!registerData.email) tempErrors.email = "Email is required";
+  // else if (!/\S+@\S+\.\S+/.test(registerData.email)) tempErrors.email = "Email is invalid";
+
+  // if (!registerData.number) tempErrors.number = "Phone Number is required";
+  // else if (!/^\d{10}$/.test(registerData.number)) tempErrors.number = "Phone Number must be 10 digits";
+
+  // if (!registerData.pass) tempErrors.pass = "Password is required";
+  // else if (registerData.pass.length < 6) tempErrors.pass = "Password must be at least 6 characters";
+
+  // if (!registerData.ConfirmPass) tempErrors.ConfirmPass = "Confirm Password is required";
+  // else if (registerData.pass !== registerData.ConfirmPass) tempErrors.ConfirmPass = "Passwords do not match";
+
+  // if (!registerData.Country) tempErrors.Country = "Country is required";
+  // if (!registerData.State) tempErrors.State = "State is required";
+  // if (!registerData.City) tempErrors.City = "City is required";
+  // if (!registerData.Gender) tempErrors.Gender = "Gender is required";
+  // if (!registerData.Hospital) tempErrors.Hospital = "Hospital is required";
+
+  // setErrors(tempErrors);
+
+  // return Object.keys(tempErrors).length === 0;
+};
 
 
 export default App;
