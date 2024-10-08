@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import img from "../images/Group 1116603021.png";
 import { getValue } from "@testing-library/user-event/dist/utils";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Patient = () => {
     
@@ -264,17 +265,23 @@ const Patient = () => {
               </div>
               <button
                 type="submit"
-                class="w-full bg-blue-600 text-white py-2 rounded-md"
+                class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
               >
                 Register
               </button>
               <p class="text-center text-sm text-gray-600 mt-4">
                 Already have an account?{" "}
-                <a href="#" class="text-blue-600">
+                <Link to={"/login"} class="text-blue-600">
                   Login
-                </a>
+                </Link>
               </p>
             </form>
+            <Link 
+              to={"/"}
+              className="w-full bg-blue-500 text-white py-4  px-3   rounded-md hover:bg-blue-600"
+            >
+              Admin Register  
+            </Link>
           </div>
           <div class="w-1/2 flex justify-center items-center">
             <div class="text-center">

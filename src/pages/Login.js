@@ -7,6 +7,7 @@ const Login = () => {
 
     let [loginUser,setLoginUer] = useState({});
     let [registerUser,setRegisterUser] = useState([]);
+    let [patientUser,setPatientUser] = useState([])
     let navigate  = useNavigate()
 
 
@@ -17,23 +18,33 @@ const Login = () => {
   };
 
   useEffect(()=>{
-    const getRegisterUser = async ()=>{
-       const res = await axios.get("http://localhost:3000/data")
-       setRegisterUser(res.data)  
-    }
+    getPatientData()
     getRegisterUser()   
 },[])
 console.log(registerUser)
 
+const getRegisterUser = async ()=>{
+    const res = await axios.get("http://localhost:3000/data")
+    setRegisterUser(res.data)  
+ }
+
+const getPatientData = async()=>{
+    const response = await axios.get("http://localhost:3000/patientData")
+    setPatientUser(response.data)
+}
+
   const submitUser = () => {
     const user = registerUser.find ((v)=>v.email === loginUser.email && v.pass === loginUser.pass);
+    const patient = patientUser.find((v)=>v.email === loginUser.email && v.pass === loginUser.pass)
     if(user){
         alert("loged in")
         axios.post("http://localhost:3000/loginUser",loginUser);
         navigate("/dashboard", { state: { user } });
     }
+    else if(patient){
+        alert("Patient Login Success")
   };
-
+  }
   return (
     <>
       <div className="flex h-screen">
@@ -91,5 +102,6 @@ console.log(registerUser)
     </>
   );
 }
+    
 
-export default Login;
+export default Login
