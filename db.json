@@ -81,6 +81,11 @@
       "id": "5e90",
       "email": "ronny@gmail.com",
       "pass": "123"
+    },
+    {
+      "id": "7315",
+      "pass": "123",
+      "email": "ronny@gmail.com"
     }
   ],
   "hopital": [
@@ -118,6 +123,24 @@
       "contry": "India",
       "state": "Gujarat",
       "city": "Rajkot",
+      "zipcode": "390056"
+    },
+    {
+      "id": "ada6",
+      "hospitalName": "City Hospital",
+      "hospitalAdd": "testing",
+      "contry": "India",
+      "state": "Gujarat",
+      "city": "Vadodara",
+      "zipcode": "390056"
+    },
+    {
+      "id": "6cd6",
+      "hospitalName": "rrrrr",
+      "hospitalAdd": "rrr",
+      "contry": "India",
+      "state": "Gujarat",
+      "city": "Vadodara",
       "zipcode": "390056"
     }
   ],

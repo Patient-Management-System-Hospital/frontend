@@ -19,12 +19,14 @@ const Forget = () => {
   };
 
   const submitData = (e) => {
-    e.preventDefault();
-    if (email) {
-      generateOTP();
-    } else {
-      alert("Please enter a valid email.");
-    }
+    e.preventDefault(); 
+      if (email) {
+        generateOTP();
+      } else {
+        alert("Please enter a valid email.");
+      }
+    
+    
   };
 
   return (
@@ -63,13 +65,6 @@ const Forget = () => {
               >
                 Back to Login
               </Link>{" "}
-              ||
-              <Link
-                to={"/otp"}
-                className="inline-block font-semibold text-blue-500 hover:text-blue-800"
-              >
-                Get Otp
-              </Link>
             </div>
           </div>
           <div className="w-1/2 bg-blue-50 flex items-center justify-center relative">

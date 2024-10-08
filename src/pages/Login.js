@@ -7,12 +7,32 @@ const Login = () => {
   let [loginUser, setLoginUer] = useState({});
   let [registerUser, setRegisterUser] = useState([]);
   let [patientUser, setPatientUser] = useState([]);
+  const [showPassword, setShowPassword] = useState(false);
+  let [error,setError] = useState({})
   let navigate = useNavigate();
 
   const getValue = (e) => {
     let name = e.target.name;
     let value = e.target.value;
     setLoginUer({ ...loginUser, [name]: value });
+
+        
+    if(name === "email"){
+        if(value === ""){
+            setError({...error,emailError:"Enter Your Email Or Phone-Number"})
+        }
+        else{
+            setError({...error,emailError:""})
+        }
+    }
+    else if(name=== "pass"){
+        if(value === ""){
+            setError({...error,passError:"Enter Your Password"})
+        }
+        else{
+            setError({...error,passError:""})
+        }
+    }
   };
 
   useEffect(() => {
@@ -33,28 +53,37 @@ const Login = () => {
 
   const submitUser = (e) => {
     e.preventDefault()
-    const user = registerUser.find(
-      (v) => v.email === loginUser.email && v.pass === loginUser.pass
-    );
-    const patient = patientUser.find(
-      (v) => v.email === loginUser.email && v.pass === loginUser.pass
-    );
-    if (user) {
-      alert("loged in");
-      axios.post("http://localhost:3000/loginUser", loginUser);
-      navigate("/dashboard", { state: { user } });
-    } else if (patient) {
-      alert("Patient Login Success");
+    if (loginUser.email === undefined) {
+        setError({...error,emailError:"Enter Your Email Or Phone-Number"})
+    } 
+    else if(loginUser.pass === undefined){
+        setError({...error,passError:"Enter Your Password"})
     }
-    else{
-        alert("email or password are not match")
-    }
+    else {
+        const user = registerUser.find(
+            (v) => v.email === loginUser.email && v.pass === loginUser.pass
+          );
+          const patient = patientUser.find(
+            (v) => v.email === loginUser.email && v.pass === loginUser.pass
+          );
+          if (user) {
+            alert("loged in");
+            axios.post("http://localhost:3000/loginUser", loginUser);
+            navigate("/dashboard", { state: { user } });
+            setLoginUer({})
+          } else if (patient) {
+            alert("Patient Login Success");
+          }
+          else{
+              alert("email or password are not match")
+          } 
+        }
   };
   return (
     <>
       <div className="flex h-screen">
         <div className="w-1/2 flex items-center justify-center">
-          <div className="bg-white p-8 rounded-lg shadow-md w-auto">
+          <div className="bg-white p-8 rounded-lg shadow-md w-[600px]">
             <h2 className="text-2xl font-semibold mb-6">Login</h2>
             <form method="post" onSubmit={(e) => submitUser(e)}>
               <div className="mb-4">
@@ -66,12 +95,20 @@ const Login = () => {
                 </label>
                 <input
                   name="email"
-                  className="shadow appearance-none border rounded w-[550px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline ${
+                    error.emailError
+                        ? "border-red-500"      
+                        : loginUser.email
+                        ? "border-green-500"
+                        : "focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  }`}
                   id="email"
                   type="text"
+                  value={loginUser.email?loginUser.email:""}
                   placeholder="Enter Email or Phone Number"
                   onChange={(e) => getValue(e)}
                 />
+                <span className="text-red-500 font-semibold inline-block">{error.emailError?error.emailError:""}</span>
               </div>
               <div className="mb-4">
                 <label
@@ -83,13 +120,26 @@ const Login = () => {
                 <div className="relative">
                   <input
                     name="pass"
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline ${
+                        error.passError
+                        ? "border-red-500"
+                        : loginUser.pass
+                        ? "border-green-500"
+                        : "focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    }`}
                     id="password"
-                    type="password"
+                    value={loginUser.pass?loginUser.pass:""}
+                    type={showPassword ? "text" : "password"}
                     placeholder="Enter Password"
                     onChange={(e) => getValue(e)}
                   />
-                  <i className="fas fa-eye absolute right-3 top-3 text-gray-500"></i>
+                  <i
+                  className={`fas ${
+                    showPassword ? "fa-eye-slash" : "fa-eye"
+                  } absolute right-3 top-3 text-gray-500 cursor-pointer`}
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+                  <span className="text-red-500 font-semibold">{error.passError?error.passError:""}</span>
                 </div>
               </div>
               <div className="flex items-center justify-between mb-6">

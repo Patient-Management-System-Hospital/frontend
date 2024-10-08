@@ -7,6 +7,8 @@ const ResetPassword = () => {
 
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const[showPassword,setShowPassword] = useState(false)
+  const [error,setError] = useState({})
   const navigate = useNavigate();
   const location = useLocation()
 
@@ -14,44 +16,56 @@ const ResetPassword = () => {
   
 
   const handleSubmit = async () => {
-    if (newPassword !== confirmPassword) {
-      alert("Passwords do not match");
-      return;
+
+    if (newPassword === "") {
+      setError({...error,newPasswordError:"Please Enter Your New Password"})
     }
-
-    try {
-      const response = await axios.get(`http://localhost:3000/data?email=${email}`);
-
-      const result = await axios.get(`http://localhost:3000/patientData?email=${email}`)
-
-      const user = response.data[0];
-      const patient = result.data[0]
-
-      if (user) {
-        await axios.put(`http://localhost:3000/data/${user.id}`, {
-          ...user,
-          pass: newPassword,
-          ConfirmPass:confirmPassword,
-        });
-        alert("Password reset successfully!");
-        navigate("/login");
+    else if(confirmPassword === ""){
+      setError({...error,confirmPassError:"Please Enter Your Confirm Password"})
+    } 
+    else {
+      if (newPassword !== confirmPassword) {
+        alert("Passwords do not match");
+        return;
       }
-      else if(patient){
-        await axios.put(`http://localhost:3000/patientData/${patient.id}`,{
-          ...patient,
-          pass: newPassword,
-          ConfirmPass:confirmPassword
-        })
-        alert("Password reset successfully!");
-        navigate("/login");
-      }
-      else {
-        console.log("something wrong");
+      setError({})
+      try {
+        const response = await axios.get(`http://localhost:3000/data?email=${email}`);
+  
+        const result = await axios.get(`http://localhost:3000/patientData?email=${email}`)
+  
+        const user = response.data[0];
+        const patient = result.data[0]
         
+        if (user) {
+          await axios.put(`http://localhost:3000/data/${user.id}`, {
+            ...user,
+            pass: newPassword,
+            ConfirmPass:confirmPassword,
+          });
+          alert("Password reset successfully!");
+          navigate("/login");
+        }
+        else if(patient){
+          await axios.put(`http://localhost:3000/patientData/${patient.id}`,{
+            ...patient,
+            pass: newPassword,
+            ConfirmPass:confirmPassword
+          })
+          alert("Password reset successfully!");
+          navigate("/login");
+        }
+        else {
+          console.log("something wrong");
+          
+        }
+      } catch (error) {
+        console.error("Error updating password:", error);
       }
-    } catch (error) {
-      console.error("Error updating password:", error);
     }
+    
+
+    
   };
 
   return (
@@ -72,12 +86,24 @@ const ResetPassword = () => {
               <div className="relative">
                 <input
                   id="new-password"
-                  type="password"
+                  type={showPassword?"text":"password"}
                   placeholder="Enter New Password"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={newPassword}
+                  className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline ${
+                    error.newPasswordError
+                        ? "border-red-500"
+                        : newPassword
+                        ? "border-green-500"
+                        : "focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  }`} value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                 />
-                <i className="fas fa-eye absolute right-3 top-3 text-gray-500"></i>
+                <i
+                  className={`fas ${
+                    showPassword ? "fa-eye-slash" : "fa-eye"
+                  } absolute right-3 top-3 text-gray-500 cursor-pointer`}
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+                <span className="text-red-500 font-semibold text-sm">{error.newPasswordError?error.newPasswordError:""}</span>
               </div>
             </div>
             <div className="mb-6">
@@ -90,12 +116,18 @@ const ResetPassword = () => {
               <div className="relative">
                 <input
                   id="confirm-password"
-                  type="password"
+                  type={showPassword?"text":"password"}
                   placeholder="Enter Confirm Password"
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
-                <i className="fas fa-eye absolute right-3 top-3 text-gray-500"></i>
+                <i
+                  className={`fas ${
+                    showPassword ? "fa-eye-slash" : "fa-eye"
+                  } absolute right-3 top-3 text-gray-500 cursor-pointer`}
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+                <span>{error.confirmPassError?error.confirmPassError:""}</span>
               </div>
             </div>
             <button
