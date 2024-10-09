@@ -166,17 +166,82 @@ const [hospitalData,setHospitalData] = useState([])
     let name =  e.target.name
     let value= e.target.value
     setNewHospital({...newHospital,[name]:value})
+
+    if(name === "hospitalName"){
+      if (value === "") {
+        setErrors({...errors,hospitalNameError:"Please Enter Your Hopital Name" })
+      } else {
+        setErrors({...errors,hospitalNameError:""})
+      }
+    }
+    else if(name === "hospitalAdd"){
+      if (value === "") {
+        setErrors({...errors,hospitalAddError:"Please Enter Your Hopital Address" })
+      } else {
+        setErrors({...errors,hospitalAddError:"" })
+      }
+    }
+    else if(name === "contry"){
+      if (value === "") {
+        setErrors({...errors,hospitalContryError:"Please Select Your Hopital Country" })
+      } else {
+        setErrors({...errors,hospitalContryError:"" })
+      }
+    }
+    else if(name === "state"){
+      if (value === "") {
+        setErrors({...errors,hospitalStateError:"Please Select Your Hopital State" })
+      } else {
+        setErrors({...errors,hospitalStateError:"" })
+      }
+    }
+    else if(name === "city"){
+      if (value === "") {
+        setErrors({...errors,hospitalCityError:"Please Select Your Hopital City" })
+      } else {
+        setErrors({...errors,hospitalCityError:"" })
+      }
+    }
+    else if(name === "zipcode"){
+      if (value === "") {
+        setErrors({...errors,hospitalZipcodeError:"Please Enter Your Zipcode" })
+      } else {
+        setErrors({...errors,hospitalZipcodeError:"" })
+      }
+    }
   }
 
   const saveSubmitData = (e)=>{
     e.preventDefault()
-     console.log(newHospital);
-     try {
-      axios.post("http://localhost:3000/hopital",newHospital)
-      setNewHospital({})
-     } catch (error) {
-      console.log(error)
+    const {hospitalName, hospitalAdd,contry,state,city,zipcode} = newHospital
+     if (!hospitalName) {
+      setErrors({...errors,hospitalNameError:"Please Enter Your Hopital Name" })
+     } 
+     else if(!hospitalAdd){
+      setErrors({...errors,hospitalAddError:"Please Enter Your Hopital Address" })
      }
+     else if(!contry){
+      setErrors({...errors,hospitalContryError:"Please Select Your Hopital Country" })
+     }
+     else if(!state){
+      setErrors({...errors,hospitalStateError:"Please Select Your Hopital State" })
+     }
+     else if(!city){
+      setErrors({...errors, hospitalCityError:"Please Select Your Hopital City" })
+     }
+     else if(!zipcode){
+      setErrors({...errors,hospitalZipcodeError:"Please Enter Your zipcode" })
+     }
+     else {
+      try {
+        axios.post("http://localhost:3000/hopital",newHospital)
+        setNewHospital({})
+        setErrors({})
+       } catch (error) {
+        console.log(error)
+       }
+     }
+     
   }
 
   const handleCloseModal = ()=>{
@@ -191,7 +256,7 @@ const [hospitalData,setHospitalData] = useState([])
       const result = await axios.get("http://localhost:3000/hopital")
       setHospitalData(result.data)
   }
- console.log(hospitalData)
+ 
   return (
     <>
       <div className="flex justify-center items-center min-h-screen">
@@ -581,9 +646,15 @@ const [hospitalData,setHospitalData] = useState([])
                   placeholder="Enter Hospital Name"
                   value={newHospital.hospitalName?newHospital.hospitalName:""}
                   onChange={(e) => hospitalValue(e) }
-                  className="w-full p-2 border border-gray-300 rounded"
-                  required
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    errors.hospitalNameError
+                      ? "border-red-500"
+                      : newHospital.hospitalName
+                      ? "border-green-500"
+                      : "focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  }`}
                 />
+                <span className="text-red-500 text-sm font-semibold">{errors.hospitalNameError?errors.hospitalNameError : ""}</span>
               </div>
 
               <div className="mb-4">
@@ -597,9 +668,16 @@ const [hospitalData,setHospitalData] = useState([])
                   placeholder="Enter Hospital Address"
                   value={newHospital.hospitalAdd?newHospital.hospitalAdd:""}
                   onChange={(e) =>hospitalValue(e) }
-                  className="w-full p-2 border border-gray-300 rounded"
-                  required
+                  className={`w-full p-2 border border-gray-300 rounded 
+                    ${
+                      errors.hospitalAddError
+                      ? "border-red-500"
+                      : newHospital.hospitalAdd
+                      ? "border-green-500"
+                      : "focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    }`}
                 />
+                <span className="text-red-500 text-sm font-semibold">{errors.hospitalAddError?errors.hospitalAddError : ""}</span>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -607,21 +685,33 @@ const [hospitalData,setHospitalData] = useState([])
                 <label className="block text-sm mb-2" htmlFor="hospitalAddress">
                  Country
                 </label>
-                <select name="contry" value={newHospital.contry?newHospital.contry:""} onChange={(e)=>hospitalValue(e)} className="w-full p-2 border border-gray-300 rounded">
+                <select name="contry" value={newHospital.contry?newHospital.contry:""} onChange={(e)=>hospitalValue(e)} className={`w-full p-2 border border-gray-300 rounded ${
+                  errors.hospitalContryError
+                  ? "border-red-500"
+                  : newHospital.contry
+                  ? "border-green-500"
+                  : "focus:outline-none focus:ring-2 focus:ring-blue-500"
+                }`}>
                   <option>Select Country</option>
                   <option value={"India"}>India</option>
                 </select>
-                
+                <span className="text-red-500 text-sm font-semibold">{errors.hospitalContryError?errors.hospitalContryError : ""}</span>
               </div>
               <div className="mb-4">
                 <label className="block text-sm mb-2" htmlFor="hospitalAddress">
                   State
                 </label>
-                <select name="state" value={newHospital.state?newHospital.state:""} onChange={(e)=>hospitalValue(e)} className="w-full p-2 border border-gray-300 rounded">
+                <select name="state" value={newHospital.state?newHospital.state:""} onChange={(e)=>hospitalValue(e)} className={`w-full p-2 border border-gray-300 rounded ${
+                  errors.hospitalStateError
+                  ? "border-red-500"
+                  : newHospital.state
+                  ? "border-green-500"
+                  : "focus:outline-none focus:ring-2 focus:ring-blue-500"
+                }`}>
                   <option>Select State</option>
                   <option value={"Gujarat"}>Gujarat</option>
                 </select>
-                
+                <span className="text-red-500 text-sm font-semibold">{errors.hospitalStateError?errors.hospitalStateError : ""}</span>
               </div>
                 </div>  
                 <div className="grid grid-cols-2 gap-4">
@@ -629,13 +719,20 @@ const [hospitalData,setHospitalData] = useState([])
                 <label className="block text-sm mb-2" htmlFor="hospitalAddress">
                  City
                 </label>
-                <select name="city" value={newHospital.city?newHospital.city:""} onChange={(e)=>hospitalValue(e)}  className="w-full p-2 border border-gray-300 rounded">
+                <select name="city" value={newHospital.city?newHospital.city:""} onChange={(e)=>hospitalValue(e)}  className={`w-full p-2 border border-gray-300 rounded ${
+                  errors.hospitalCityError
+                  ? "border-red-500"
+                  : newHospital.city
+                  ? "border-green-500"
+                  : "focus:outline-none focus:ring-2 focus:ring-blue-500"
+                }`}>
                   <option className="text-[#A7A7A7]">Select City</option>
                   <option value={"Surat"}>Surat</option>
                   <option value={"Vadodara"}>Vadodara</option>
                   <option value={"Rajkot"}>Rajkot</option>
                   <option value={"Ahemadabad"}>Ahemadabad</option>
                 </select>
+                <span className="text-red-500 text-sm font-semibold">{errors.hospitalCityError?errors.hospitalCityError : ""}</span>
               </div>
               <div className="mb-4 ">
                 <label className="block text-sm mb-2" htmlFor="hospitalAddress">
@@ -648,9 +745,15 @@ const [hospitalData,setHospitalData] = useState([])
                   name="zipcode"
                   value={newHospital.zipcode?newHospital.zipcode:""}
                   onChange={(e) =>hospitalValue(e)}
-                  className="w-full p-2 border border-gray-300 rounded "
-                  required
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    errors.hospitalZipcodeError
+                      ? "border-red-500"
+                      : newHospital.zipcode
+                      ? "border-green-500"
+                      : "focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  }`}
                 />
+                <span className="text-red-500 text-sm font-semibold">{errors.hospitalZipcodeError?errors.hospitalZipcodeError : ""}</span>
               </div>
                 </div>  
               <div className="flex justify-end">
