@@ -14,6 +14,8 @@ import DoctorManagement from "./pages/DoctorManagement";
 import AddDoctor from "./pages/AddDoctor";
 import Patient from "./pages/Patient";
 import PatientDetails from "./pages/PatientDetails";
+import PrescriptionAccess from "./pages/PrescriptionAccess";
+import AppointmentBooking from "./pages/AppointmentBooking";
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
         <Route path="/addDoc" element={<AddDoctor/>}/>
         <Route path="/patient" element={<Patient/>}/>
         <Route path="/patientDetails" element={<PatientDetails/>}/>
+        <Route path="/prescriptionAccess" element={<PrescriptionAccess/>}/>
+        <Route path="/appointmentBooking" element={<AppointmentBooking/>}/>
       </Routes>
     </BrowserRouter>
     
