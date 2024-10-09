@@ -71,6 +71,54 @@
       "id": "dcb8",
       "email": "ronny@gmail.com",
       "pass": "123"
+    },
+    {
+      "id": "1995",
+      "email": "ronny@gmail.com",
+      "pass": "123"
+    },
+    {
+      "id": "5e90",
+      "email": "ronny@gmail.com",
+      "pass": "123"
+    }
+  ],
+  "hopital": [
+    {
+      "id": "d208",
+      "hospitalName": "Appolo Hopital",
+      "hospitalAdd": "testing",
+      "contry": "India",
+      "state": "Gujarat",
+      "city": "Surat",
+      "zipcode": "390056"
+    },
+    {
+      "id": "7c53",
+      "hospitalName": "Apex hopital",
+      "hospitalAdd": "testing",
+      "contry": "India",
+      "state": "Gujarat",
+      "city": "Surat",
+      "zipcode": "390056"
+    },
+    {
+      "id": "d477",
+      "hospitalName": "viraj hospital",
+      "hospitalAdd": "testing",
+      "contry": "India",
+      "state": "Gujarat",
+      "city": "Vadodara",
+      "zipcode": "390056"
+    },
+    {
+      "id": "b10f",
+      "hospitalName": "general hospital",
+      "hospitalAdd": "testing",
+      "contry": "India",
+      "state": "Gujarat",
+      "city": "Rajkot",
+      "zipcode": "390056"
     }
   ],
   "doctor": [
@@ -173,8 +221,8 @@
       "state": "gujarat",
       "city": "Surat",
       "add": "testing",
-      "pass": "123",
-      "ConfirmPass": "123"
+      "pass": "234",
+      "ConfirmPass": "234"
     },
     {
       "id": "9fca",

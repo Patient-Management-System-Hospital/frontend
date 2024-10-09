@@ -13,10 +13,12 @@ import Privacy from "./pages/Privacy";
 import DoctorManagement from "./pages/DoctorManagement";
 import AddDoctor from "./pages/AddDoctor";
 import Patient from "./pages/Patient";
+import PatientDetails from "./pages/PatientDetails";
 
 function App() {
   return (
     <BrowserRouter>
+    {/* <Navbar/> */}
       <Routes>
         <Route path="/" element={<Register />}/>
         <Route path="/login" element={<Login/>}/>
@@ -31,6 +33,7 @@ function App() {
         <Route path="/doctorMangement" element={<DoctorManagement/>}/>
         <Route path="/addDoc" element={<AddDoctor/>}/>
         <Route path="/patient" element={<Patient/>}/>
+        <Route path="/patientDetails" element={<PatientDetails/>}/>
       </Routes>
     </BrowserRouter>
     
