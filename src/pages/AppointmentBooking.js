@@ -17,22 +17,22 @@ const AppointmentBooking = () => {
                         <nav>
                             <ul>
                                 <li className="mb-4">
-                                    <a href="#" className="flex items-center text-gray-700">
+                                    <Link to={"/patientDetails"} className="flex items-center text-gray-700">
                                         <i className="fas fa-file-medical-alt mr-2"></i>
                                         Personal Health Record
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="mb-4">
-                                    <a href="#" className="flex items-center text-blue-500">
+                                    <Link to={"/appointmentBooking"} className="flex items-center text-blue-500">
                                         <i className="fas fa-calendar-check mr-2"></i>
                                         Appointment Booking
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="mb-4">
-                                    <a href="#" className="flex items-center text-gray-700">
+                                    <Link to={"/prescriptionAccess"} className="flex items-center text-gray-700">
                                         <i className="fas fa-prescription-bottle-alt mr-2"></i>
                                         Prescription Access
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="mb-4">
                                     <a href="#" className="flex items-center text-gray-700">

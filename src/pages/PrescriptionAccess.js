@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import ObjectImg from "../images/OBJECTS.png"
 
 const PrescriptionAccess = () => {
   return (
@@ -13,18 +15,18 @@ const PrescriptionAccess = () => {
                             </div>
                         </div>
                         <nav class="space-y-4">
-                            <a href="#" class="flex items-center text-blue-600">
+                            <Link to={"/patientDetails"} class="flex items-center text-blue-600">
                                 <i class="fas fa-user-md mr-2"></i>
                                 <span>Personal Health Record</span>
-                            </a>
-                            <a href="#" class="flex items-center text-blue-600">
+                            </Link>
+                            <Link to={"/AppointmentBooking"} class="flex items-center text-blue-600">
                                 <i class="fas fa-calendar-alt mr-2"></i>
                                 <span>Appointment Booking</span>
-                            </a>
-                            <a href="#" class="flex items-center text-blue-600 bg-blue-100 p-2 rounded">
+                            </Link>
+                            <Link to={"/prescriptionAccess"} class="flex items-center text-blue-600 bg-blue-100 p-2 rounded">
                                 <i class="fas fa-file-prescription mr-2"></i>
                                 <span>Prescription Access</span>
-                            </a>
+                            </Link>
                             <a href="#" class="flex items-center text-blue-600">
                                 <i class="fas fa-video mr-2"></i>
                                 <span>Teleconsultation Access</span>
@@ -40,7 +42,7 @@ const PrescriptionAccess = () => {
                         </nav>
                         <div class="mt-auto">
                             <div class="bg-blue-100 p-4 rounded-lg mb-4">
-                                <img src="https://placehold.co/100x100" alt="Appointment Illustration" class="w-16 h-16 mx-auto mb-2"/>
+                                <img src={ObjectImg} alt="Appointment Illustration" class="w-16 h-16 mx-auto mb-2"/>
                                 <h2 class="text-center text-blue-600 font-semibold">Hospital appointment</h2>
                                 <p class="text-center text-gray-500 text-sm">You have to fill up the form to be admitted to the hospital.</p>
                                 <button class="bg-blue-600 text-white w-full py-2 mt-2 rounded">Appointment</button>

@@ -20,6 +20,7 @@ import BookAppointment from "./pages/BookAppointment";
 import PreviousAppointment from "./pages/PreviousAppointment";
 import CancelAppointment from "./pages/CancelAppointment";
 import PendingAppointment from "./pages/PendingAppointment";
+import PatientEdit from "./pages/PatientEdit";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/addDoc" element={<AddDoctor/>}/>
         <Route path="/patient" element={<Patient/>}/>
         <Route path="/patientDetails" element={<PatientDetails/>}/>
+        <Route path="/patientEdit" element={<PatientEdit/>}/>
         <Route path="/prescriptionAccess" element={<PrescriptionAccess/>}/>
         <Route path="/appointmentBooking" element={<AppointmentBooking/>}/>
         <Route path="/bookAppointment" element={<BookAppointment/>}/>
