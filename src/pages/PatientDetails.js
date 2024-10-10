@@ -1,165 +1,414 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const PatientDetails = () => {
   return (
     <div>
-      <div className="flex h-screen">
-      {/* Sidebar */}
-      <div className="w-1/4 bg-gray-100 p-6">
-        <div className="text-2xl font-bold text-blue-600 mb-10">Hospital</div>
-        <nav className="space-y-6">
-          <a href="#" className="block text-lg text-gray-700 hover:text-blue-600">
-            Personal Health Record
-          </a>
-          <a href="#" className="block text-lg text-gray-700 hover:text-blue-600">
-            Appointment Booking
-          </a>
-          <a href="#" className="block text-lg text-gray-700 hover:text-blue-600">
-            Prescription Access
-          </a>
-          <a href="#" className="block text-lg text-gray-700 hover:text-blue-600">
-            Teleconsultation Access
-          </a>
-          <a href="#" className="block text-lg text-gray-700 hover:text-blue-600">
-            Chat
-          </a>
-          <a href="#" className="block text-lg text-gray-700 hover:text-blue-600">
-            Bills
-          </a>
-        </nav>
-
-        <button className="mt-8 bg-blue-500 text-white py-2 px-4 rounded-lg">
-          Appointment
-        </button>
-
-        <button className="mt-auto w-full bg-red-500 text-white py-2 rounded-md mt-4">
-          Logout
-        </button>
-      </div>
-
-      {/* Main Content */}
-      <div className="w-3/4 p-6 bg-gray-50 overflow-y-auto">
-        {/* Patient Details */}
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-          <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-semibold">Patient Details</h2>
-            <button className="bg-blue-500 text-white py-2 px-4 rounded-md">Edit Profile</button>
-          </div>
-          <div className="flex mt-4 space-x-10">
+      <div className="flex">
+        <aside className="w-1/5 bg-white p-4">
+          <div className="flex items-center mb-8">
             <img
-              className="w-24 h-24 rounded-full"
-              src="https://via.placeholder.com/150"
-              alt="Patient"
+              src="https://placehold.co/40x40"
+              alt="Hospital Logo"
+              className="mr-2"
             />
-            <div className="flex-1 grid grid-cols-2 gap-x-6 gap-y-2 text-gray-700">
-              <div><span className="font-semibold">Name: </span>Marcus Philips</div>
-              <div><span className="font-semibold">Number: </span>99130 44537</div>
-              <div><span className="font-semibold">Email: </span>John@gmail.com</div>
-              <div><span className="font-semibold">Gender: </span>Male</div>
-              <div><span className="font-semibold">Height (cm): </span>160</div>
-              <div><span className="font-semibold">Weight (Kg): </span>50</div>
-              <div><span className="font-semibold">DOB: </span>2 Jan, 2022</div>
-              <div><span className="font-semibold">Age: </span>20 Years</div>
-              <div><span className="font-semibold">Blood Group: </span>B+</div>
-              <div><span className="font-semibold">City: </span>Ahmedabad</div>
-              <div><span className="font-semibold">State: </span>Gujarat</div>
-              <div><span className="font-semibold">Address: </span>B-408 Swastik society, Mota Varacha, Rajkot</div>
+            <div>
+              <h1 className="text-xl font-bold text-blue-600">Hospital</h1>
+              <p className="text-sm text-gray-500">together here</p>
             </div>
           </div>
-        </div>
-
-        {/* Medical History */}
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-semibold">Medical History</h2>
-            <a href="#" className="text-blue-500 hover:underline">View All History</a>
-          </div>
-          <div className="grid grid-cols-3 gap-6">
-            {/* History Cards */}
-            {['Dulce Schleifer', 'Dulce Workman', 'Miracle Septimus'].map((name, index) => (
-              <div key={index} className="bg-gray-100 p-4 rounded-lg">
-                <h3 className="font-semibold text-lg">{name}</h3>
-                <p className="text-gray-600 text-sm">2 Jan, 2022</p>
-                <p className="text-gray-700 mt-2">Patient Issue</p>
-                <p className="text-sm text-gray-500 mt-1">Lorem Ipsum is the standard dummy text since the 1500s...</p>
+          <nav>
+            <ul>
+              <li className="mb-4">
+                <Link to={"/patientDetails"} className="flex items-center text-blue-600">
+                  <i className="fas fa-file-medical-alt mr-2"></i>
+                  Personal Health Record
+                </Link>
+              </li>
+              <li className="mb-4">
+                <Link to={"/appointmentBooking"} className="flex items-center text-gray-600">
+                  <i className="fas fa-calendar-alt mr-2"></i>
+                  Appointment Booking
+                </Link>
+              </li>
+              <li className="mb-4">
+                <Link to={"/prescriptionAccess"} className="flex items-center text-gray-600">
+                  <i className="fas fa-prescription-bottle-alt mr-2"></i>
+                  Prescription Access
+                </Link>
+              </li>
+              <li className="mb-4">
+                <a href="#" className="flex items-center text-gray-600">
+                  <i className="fas fa-video mr-2"></i>
+                  Teleconsultation Access
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="#" className="flex items-center text-gray-600">
+                  <i className="fas fa-comments mr-2"></i>
+                  Chat
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="#" className="flex items-center text-gray-600">
+                  <i className="fas fa-file-invoice-dollar mr-2"></i>
+                  Bills
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div className="mt-8 p-4 bg-blue-50 rounded-lg">
+            <div className="flex items-center mb-4">
+              <i className="fas fa-hospital-alt text-blue-600 text-2xl mr-2"></i>
+              <div>
+                <p className="text-sm text-gray-600">Hospital appointment</p>
+                <p className="text-xs text-gray-500">
+                  You have to fill up the form to be admitted to the hospital.
+                </p>
               </div>
-            ))}
+            </div>
+            <button className="w-full bg-blue-600 text-white py-2 rounded-lg">
+              Appointment
+            </button>
           </div>
-        </div>
-
-        {/* Prescriptions */}
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-semibold">Prescriptions</h2>
-            <a href="#" className="text-blue-500 hover:underline">View All Prescriptions</a>
-          </div>
-          <table className="table-auto w-full">
-            <thead>
-              <tr className="text-left text-gray-600 border-b">
-                <th className="px-4 py-2">Hospital Name</th>
-                <th className="px-4 py-2">Date</th>
-                <th className="px-4 py-2">Disease Name</th>
-                <th className="px-4 py-2">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { hospital: "Apollo Hospitals", date: "2 Jan, 2022", disease: "Colds and Flu" },
-                { hospital: "Medanta The Medicity", date: "2 Jan, 2022", disease: "Allergies" },
-                { hospital: "Manipal Hospitals", date: "2 Jan, 2022", disease: "Diarrhea" }
-              ].map((prescription, index) => (
-                <tr key={index} className="border-b">
-                  <td className="px-4 py-2">{prescription.hospital}</td>
-                  <td className="px-4 py-2">{prescription.date}</td>
-                  <td className="px-4 py-2">{prescription.disease}</td>
-                  <td className="px-4 py-2">
-                    <button className="text-blue-500 hover:underline">View</button>
+          <button className="mt-8 w-full bg-red-600 text-white py-2 rounded-lg">
+            Logout
+          </button>
+        </aside>
+        <main className="w-4/5 p-8">
+          <header className="flex justify-between items-center mb-8">
+            <h2 className="text-2xl font-bold text-gray-700">
+              Personal Health Record
+            </h2>
+            <div className="flex items-center">
+              <input
+                type="text"
+                placeholder="Quick Search"
+                className="border border-gray-300 rounded-lg px-4 py-2 mr-4"
+              />
+              <i className="fas fa-bell text-gray-600 text-xl mr-4"></i>
+              <div className="flex items-center">
+                <img
+                  src="https://placehold.co/40x40"
+                  alt="User Avatar"
+                  className="rounded-full mr-2"
+                />
+                <div>
+                  <p className="text-sm font-bold text-gray-700">
+                    Lincoln Philips
+                  </p>
+                  <p className="text-xs text-gray-500">Admin</p>
+                </div>
+              </div>
+            </div>
+          </header>
+          <section className="bg-white p-8 rounded-lg shadow mb-8">
+            <div className="flex justify-between items-center mb-8">
+              <h3 className="text-xl font-bold text-gray-700">
+                Patient Details
+              </h3>
+              <Link to={"/patientEdit"} className="bg-blue-600 text-white px-4 py-2 rounded-lg">
+                Edit Profile
+              </Link>
+            </div>
+            <div className="flex items-center mb-8">
+              <img
+                src="https://placehold.co/100x100"
+                alt="Patient Photo"
+                className="rounded-full mr-8"
+              />
+              <div className="grid grid-cols-5 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500">Name</p>
+                    <p className="text-lg font-semibold text-gray-700">
+                      Marcus Philips
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Number</p>
+                    <p className="text-lg font-semibold text-gray-700">
+                      99130 44537
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Email</p>
+                    <p className="text-lg font-semibold text-gray-700">
+                      John@gmail.com
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Gender</p>
+                    <p className="text-lg font-semibold text-gray-700">Male</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">DOB</p>
+                    <p className="text-lg font-semibold text-gray-700">
+                      2 Jan, 2022
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Age</p>
+                    <p className="text-lg font-semibold text-gray-700">
+                      20 Years
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Blood Group</p>
+                    <p className="text-lg font-semibold text-gray-700">B+</p>
+                  </div>
+                
+                  <div>
+                    <p className="text-sm text-gray-500">Height (cm)</p>
+                    <p className="text-lg font-semibold text-gray-700">160</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Weight (Kg)</p>
+                    <p className="text-lg font-semibold text-gray-700">50</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Country</p>
+                    <p className="text-lg font-semibold text-gray-700">India</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">State</p>
+                    <p className="text-lg font-semibold text-gray-700">
+                      Gujarat
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">City</p>
+                    <p className="text-lg font-semibold text-gray-700">
+                      Ahmedabad
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Address</p>
+                    <p className="text-lg font-semibold text-gray-700">
+                      B-408 Swastik society, mota varacha rajkot.
+                    </p>
+                  </div>
+                </div>
+                </div>
+          </section>
+          <section className="bg-white p-8 rounded-lg shadow mb-8">
+            <div className="flex justify-between items-center mb-8">
+              <h3 className="text-xl font-bold text-gray-700">
+                Medical History
+              </h3>
+              <a href="#" className="text-blue-600">
+                View All History
+              </a>
+            </div>
+            <div className="grid grid-cols-3 gap-4">
+              <div className="p-4 bg-gray-50 rounded-lg shadow">
+                <div className="flex justify-between items-center mb-4">
+                  <h4 className="text-lg font-bold text-gray-700">
+                    Dulce Schleifer
+                  </h4>
+                  <p className="text-sm text-gray-500">2 Jan, 2022</p>
+                </div>
+                <p className="text-sm text-gray-500">Patient Issue</p>
+                <p className="text-sm text-gray-700">
+                  the printing and typesetting industry. Lorem Ipsum has been
+                  the industry's standard dummy text ever since the 1500s, when
+                  an unknown printer took. Lorem Ipsum has been the.
+                </p>
+              </div>
+              <div className="p-4 bg-gray-50 rounded-lg shadow">
+                <div className="flex justify-between items-center mb-4">
+                  <h4 className="text-lg font-bold text-gray-700">
+                    Dulce Workman
+                  </h4>
+                  <p className="text-sm text-gray-500">2 Jan, 2022</p>
+                </div>
+                <p className="text-sm text-gray-500">Patient Issue</p>
+                <p className="text-sm text-gray-700">
+                  the printing and typesetting industry. Lorem Ipsum has been
+                  the industry's standard dummy text ever since the 1500s, when
+                  an unknown printer took. Lorem Ipsum has been the.
+                </p>
+              </div>
+              <div className="p-4 bg-gray-50 rounded-lg shadow">
+                <div className="flex justify-between items-center mb-4">
+                  <h4 className="text-lg font-bold text-gray-700">
+                    Miracle Septimus
+                  </h4>
+                  <p className="text-sm text-gray-500">2 Jan, 2022</p>
+                </div>
+                <p className="text-sm text-gray-500">Patient Issue</p>
+                <p className="text-sm text-gray-700">
+                  the printing and typesetting industry. Lorem Ipsum has been
+                  the industry's standard dummy text ever since the 1500s, when
+                  an unknown printer took. Lorem Ipsum has been the.
+                </p>
+              </div>
+            </div>
+          </section>
+          <section className="bg-white p-8 rounded-lg shadow mb-8">
+            <div className="flex justify-between items-center mb-8">
+              <h3 className="text-xl font-bold text-gray-700">Prescriptions</h3>
+              <a href="#" className="text-blue-600">
+                View All Prescription
+              </a>
+            </div>
+            <table className="w-full text-left">
+              <thead>
+                <tr>
+                  <th className="py-2">Hospital Name</th>
+                  <th className="py-2">Date</th>
+                  <th className="py-2">Disease Name</th>
+                  <th className="py-2">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-t">
+                  <td className="py-2">Apollo Hospitals</td>
+                  <td className="py-2">2 Jan, 2022</td>
+                  <td className="py-2">Colds and Flu</td>
+                  <td className="py-2">
+                    <i className="fas fa-eye text-blue-600"></i>
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Test Reports */}
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-semibold">Test Reports</h2>
-            <a href="#" className="text-blue-500 hover:underline">View All Reports</a>
-          </div>
-          <div className="grid grid-cols-3 gap-6">
-            {/* Report Cards */}
-            {['Dr. Marcus Philips', 'Dr. Zaire Saris', 'Dr. Ryan Carder'].map((doctor, index) => (
-              <div key={index} className="bg-gray-100 p-4 rounded-lg">
-                <h3 className="font-semibold text-lg">{doctor}</h3>
-                <p className="text-gray-600 text-sm">2 Jan, 2022</p>
-                <p className="text-sm text-gray-500 mt-1">Diseases: Viral Infection</p>
-                <p className="text-green-500 font-semibold mt-2">Pathology Test</p>
+                <tr className="border-t">
+                  <td className="py-2">Medanta The Medicity</td>
+                  <td className="py-2">2 Jan, 2022</td>
+                  <td className="py-2">Allergies</td>
+                  <td className="py-2">
+                    <i className="fas fa-eye text-blue-600"></i>
+                  </td>
+                </tr>
+                <tr className="border-t">
+                  <td className="py-2">Manipal Hospitals</td>
+                  <td className="py-2">2 Jan, 2022</td>
+                  <td className="py-2">Diarrhea</td>
+                  <td className="py-2">
+                    <i className="fas fa-eye text-blue-600"></i>
+                  </td>
+                </tr>
+                <tr className="border-t">
+                  <td className="py-2">Naravana Health</td>
+                  <td className="py-2">2 Jan, 2022</td>
+                  <td className="py-2">Colds and Flu</td>
+                  <td className="py-2">
+                    <i className="fas fa-eye text-blue-600"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <section className="bg-white p-8 rounded-lg shadow mb-8">
+            <div className="flex justify-between items-center mb-8">
+              <h3 className="text-xl font-bold text-gray-700">Test Reports</h3>
+              <a href="#" className="text-blue-600">
+                View All Reports
+              </a>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 bg-gray-50 rounded-lg shadow">
+                <div className="flex items-center mb-4">
+                  <img
+                    src="https://placehold.co/40x40"
+                    alt="Doctor Photo"
+                    className="rounded-full mr-4"
+                  />
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-700">
+                      Dr. Marcus Philips
+                    </h4>
+                    <p className="text-sm text-gray-500">2 Jan, 2022</p>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-500">
+                  Dieses : Viral Infection
+                </p>
+                <p className="text-sm text-green-600">Pathology Test</p>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Patient Status */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold mb-4">Patient Status</h2>
-          <div className="space-y-2">
-            <div className="flex items-center space-x-4">
-              <div className="bg-blue-100 p-3 rounded-full">
-                <i className="fas fa-hospital"></i>
+              <div className="p-4 bg-gray-50 rounded-lg shadow">
+                <div className="flex items-center mb-4">
+                  <img
+                    src="https://placehold.co/40x40"
+                    alt="Doctor Photo"
+                    className="rounded-full mr-4"
+                  />
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-700">
+                      Dr. Zaire Saris
+                    </h4>
+                    <p className="text-sm text-gray-500">2 Jan, 2022</p>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-500">
+                  Dieses : Viral Infection
+                </p>
+                <p className="text-sm text-green-600">Pathology Test</p>
               </div>
-              <div>
-                <h3 className="font-semibold">Shamuba Hospital</h3>
-                <p className="text-sm text-gray-500">2 Jan, 2022</p>
+              <div className="p-4 bg-gray-50 rounded-lg shadow">
+                <div className="flex items-center mb-4">
+                  <img
+                    src="https://placehold.co/40x40"
+                    alt="Doctor Photo"
+                    className="rounded-full mr-4"
+                  />
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-700">
+                      Dr. Ryan Carder
+                    </h4>
+                    <p className="text-sm text-gray-500">2 Jan, 2022</p>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-500">Dieses : Allergies</p>
+                <p className="text-sm text-green-600">Pathology Test</p>
+              </div>
+              <div className="p-4 bg-gray-50 rounded-lg shadow">
+                <div className="flex items-center mb-4">
+                  <img
+                    src="https://placehold.co/40x40"
+                    alt="Doctor Photo"
+                    className="rounded-full mr-4"
+                  />
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-700">
+                      Dr. Jaxson Herwitz
+                    </h4>
+                    <p className="text-sm text-gray-500">2 Jan, 2022</p>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-500">Dieses : Allergies</p>
+                <p className="text-sm text-green-600">Pathology Test</p>
               </div>
             </div>
-            <p className="text-gray-700 text-sm">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-          </div>
-        </div>
+          </section>
+          <section className="bg-white p-8 rounded-lg shadow">
+            <h3 className="text-xl font-bold text-gray-700 mb-8">
+              Patient Status
+            </h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex items-center">
+                <i className="fas fa-hospital-alt text-blue-600 text-2xl mr-4"></i>
+                <p className="text-sm text-gray-700">Shamuba Hospital</p>
+              </div>
+              <div className="flex items-center">
+                <i className="fas fa-user-md text-green-600 text-2xl mr-4"></i>
+                <p className="text-sm text-gray-700">Dr. Mathew Best</p>
+              </div>
+              <div className="flex items-center">
+                <i className="fas fa-calendar-alt text-purple-600 text-2xl mr-4"></i>
+                <p className="text-sm text-gray-700">2 Jan, 2022</p>
+              </div>
+              <div className="flex items-center">
+                <i className="fas fa-user text-pink-600 text-2xl mr-4"></i>
+                <p className="text-sm text-gray-700">Chance Carder</p>
+              </div>
+            </div>
+            <p className="text-sm text-gray-500 mt-4">
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout.
+            </p>
+          </section>
+        </main>
       </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
-export default PatientDetails
+export default PatientDetails;
