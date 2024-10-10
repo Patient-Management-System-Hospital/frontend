@@ -385,6 +385,18 @@ const AddDoctor = () => {
                 </div>
                 <div>
                   <label className="block text-gray-700 mb-2">
+                    Password
+                  </label>
+                  <input
+                    type="text"
+                    name="pass"
+                    placeholder="Enter Password"
+                    className="border rounded w-full p-2"
+                    onChange={(e) => getdocData(e)}
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 mb-2">
                     Doctor Address
                   </label>
                   <input

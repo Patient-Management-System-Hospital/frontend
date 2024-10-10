@@ -8,44 +8,209 @@ const Patient = () => {
     
     const [patientData,setPatientData]= useState({})
     const [showPassword, setShowPassword] = useState(false);
+    const [error,setError] = useState({})
 
   const getPatientValue = (e)=>{
     const  name = e.target.name;
     const value = e.target.value;
     setPatientData({...patientData,[name]:value});
+
+    if(name === "firstName"){
+      if (value === "") {
+        setError({...error,firstNameError : "Enter Your Fisrt Name"})
+      } else {
+        setError({...error,firstNameError : ""})
+      }
+    }
+    else if(name === "lastName"){
+      if (value === "") {
+        setError({...error,lastNameError : "Enter Your Last Name"})
+      } else {
+        setError({...error,lastNameError : ""})
+      }
+    }
+    else if(name === "email"){
+      if (value === "") {
+        setError({...error,emailError : "Enter Your Email"})
+      } else {
+        setError({...error,emailError: ""})
+      }
+    }
+    else if(name === "number"){
+      if (value === "") {
+        setError({...error,numberError : "Enter Your Phone Number"})
+      } else {
+        setError({...error,numberError : ""})
+      }
+    }
+    else if(name === "age"){
+      if (value === "") {
+        setError({...error,ageError : "Enter Your Age"})
+      } else {
+        setError({...error,ageError : ""})
+      }
+    }
+    else if(name === "height"){
+      if (value === "") {
+        setError({...error,heightError : "Enter Your Height"})
+      } else {
+        setError({...error,heightError : ""})
+      }
+    }
+    else if(name === "weight"){
+      if (value === "") {
+        setError({...error,weightError : "Enter Your Weight"})
+      } else {
+        setError({...error,weightError : ""})
+      }
+    }
+    else if(name === "gender"){
+      if (value === "") {
+        setError({...error,genderError : "Select Your Gender"})
+      } else {
+        setError({...error,genderError : ""})
+      }
+    }
+    else if(name === "bloodgroup"){
+      if (value === "") {
+        setError({...error,bloodgroupError : "Select Your Bloodgroup"})
+      } else {
+        setError({...error,bloodgroupError : ""})
+      }
+    }
+    else if(name === "dob"){
+      if (value === "") {
+        setError({...error,dobError : "Enter Your Date Of Birth"})
+      } else {
+        setError({...error,dobError : ""})
+      }
+    }
+    else if(name === "country"){
+      if (value === "") {
+        setError({...error,countryError : "Select Your Country"})
+      } else {
+        setError({...error,countryError : ""})
+      }
+    }
+    else if(name === "state"){
+      if (value === "") {
+        setError({...error,stateError : "Select Your State"})
+      } else {
+        setError({...error,stateError : ""})
+      }
+    }
+    else if(name === "city"){
+      if (value === "") {
+        setError({...error,cityError : "Select Your City"})
+      } else {
+        setError({...error,cityError : ""})
+      }
+    }
+    else if(name === "add"){
+      if (value === "") {
+        setError({...error,addError : "Enter Your Address"})
+      } else {
+        setError({...error,addError : ""})
+      }
+    }
+    else if(name === "pass"){
+      if (value === "") {
+        setError({...error,passError : "Enter Your Address"})
+      } else {
+        setError({...error,passError : ""})
+      }
+    }
+    else if(name === "confirmPass"){
+      if (value === "") {
+        setError({...error,confirmPassError : "Enter Your Confirm Password"})
+      } else {
+        setError({...error,confirmPassError : ""})
+      }
+    }
   }
 
   const submitData = (e)=>{
     e.preventDefault()
-    console.log(patientData)
-    try{
-      axios.post("http://localhost:3000/patientData",patientData )
-      alert("data Added Successfully  ")
+    if (patientData.firstName === undefined) {
+        setError({...error,firstNameError : "Enter Your Fisrt Name"})
+    } 
+    else if(patientData.lastName === undefined){
+      setError({...error,lastNameError : "Enter Your Last Name"})
+    } 
+    else if(patientData.email === undefined){
+      setError({...error,emailError : "Enter Your Email"})
     }
-    catch(err){
-      console.log(err)
+    else if(patientData.number === undefined){
+      setError({...error,numberError : "Enter Your Phone Number"})
     }
+    else if(patientData.age === undefined){
+      setError({...error,ageError : "Enter Your Age"})
+    }
+    else if(patientData.height === undefined){
+      setError({...error,heightError : "Enter Your Height"})
+    }
+    else if(patientData.weight === undefined){
+      setError({...error,weightError : "Enter Your Weight" })
+    }
+    else if(patientData.gender === undefined){
+      setError({...error,genderError : "Select Your Gender" })
+    }
+    else if(patientData.bloodgroup===undefined){
+      setError({...error,bloodgroupError : "Select Your Blood Group" })
+    }
+    else if(patientData.dob === undefined){
+      setError({...error,dobError : "Enter Your Date Of Birth" })
+    }
+    else if(patientData.country === undefined){
+      setError({...error,countryError : "Select Your Country" })
+    }
+    else if(patientData.state === undefined){
+      setError({...error,stateError : "Select Your State" })
+    }
+    else if(patientData.city === undefined){
+      setError({...error,cityError : "Select Your City" })
+    }
+    else if(patientData.add === undefined){
+      setError({...error,addError : "Enter Your Address" })
+    }
+    else if(patientData.pass === undefined){
+      setError({...error,passError : "Enter Your Password" })
+    }
+    else if(patientData.confirmPass === undefined){
+      setError({...error,confirmPassError : "Enter Your Confirm Password" })
+    }
+    else {
+      try{
+        axios.post("http://localhost:3000/patientData",patientData )
+        alert("data Added Successfully  ")
+      }
+      catch(err){
+        console.log(err)
+      }
+    }
+    
   }
 
   return (
     <div>
-      <div class="flex justify-center items-center min-h-screen">
-        <div class="bg-white shadow-md rounded-lg p-8 w-full flex">
-          <div class="w-1/2 pr-8">
-            <h2 class="text-2xl font-semibold mb-6">Registration</h2>
-            <form class="space-y-4" onSubmit={(e)=>submitData(e)}>
-              <div class="grid grid-cols-2 gap-4">
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="bg-white shadow-md rounded-lg p-8 w-full flex">
+          <div className="w-1/2 pr-8">
+            <h2 className="text-2xl font-semibold mb-6">Registration</h2>
+            <form className="space-y-4" onSubmit={(e)=>submitData(e)}>
+              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700">
-                    First Name<span class="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-gray-700">
+                    First Name<span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
                     name="firstName"
                     placeholder="Enter First Name"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2`}
                     onChange={(e)=>getPatientValue(e)}
                   />
+                  <span className="text-red-500 font-semibold">{error.firstNameError?error.firstNameError:""}</span>
                 </div>
                 <div>
                   <label class="block text-sm font-medium text-gray-700">
@@ -55,9 +220,10 @@ const Patient = () => {
                     type="text"
                     name="lastName"
                     placeholder="Enter Last Name"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     onChange={(e)=>getPatientValue(e)}
                   />
+                  <span className="text-red-500 font-semibold">{error.lastNameError?error.lastNameError:""}</span>
                 </div>
               </div>
               <div class="grid grid-cols-2 gap-4">
@@ -69,78 +235,84 @@ const Patient = () => {
                     type="email"
                     name="email"
                     placeholder="Enter Email Address"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     onChange={(e)=>getPatientValue(e)}
                   />
+                  <span className="text-red-500 font-semibold">{error.emailError?error.emailError:""}</span>
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700">
-                    Phone Number<span class="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Phone Number<span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
                     name="number"
                     placeholder="Enter Phone Number"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     onChange={(e)=>getPatientValue(e)}
                   />
+                  <span>{error.numberError?error.numberError:""}</span>
                 </div>
               </div>
               <div class="grid grid-cols-3 gap-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700">
-                    Age<span class="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Age<span className="text-red-500">*</span>
                   </label>
                   <input
                     type="number"
                     name="age"
                     placeholder="Enter Age"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     onChange={(e)=>getPatientValue(e)}
                   />
+                  <span>{error.ageError?error.ageError:""}</span>
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700">
-                    Height (cm)<span class="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Height (cm)<span className="text-red-500">*</span>
                   </label>
                   <input
                     type="number"
                     name="height"
                     placeholder="Enter Height"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     onChange={(e)=>getPatientValue(e)}
                   />
+                  <span>{error.heightError?error.heightError:""}</span>
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700">
-                    Weight (Kg)<span class="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Weight (Kg)<span className="text-red-500">*</span>
                   </label>
                   <input
                     type="number"
                     name="weight"
                     placeholder="Enter Weight"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     onChange={(e)=>getPatientValue(e)}
                   />
+                  <span className="text-red-500 font-semibold">{error.weightError?error.weightError:""}</span>
                 </div>
               </div>
-              <div class="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700">
-                    Gender<span class="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Gender<span className="text-red-500">*</span>
                   </label>
-                  <select name="gender" onChange={(e)=>getPatientValue(e)} class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                  <select name="gender" onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     <option>Select Gender</option>
                     <option value={"male"}>Male</option>
                     <option value={"female"}>Female</option>
                     <option value={"other"}>Other</option>
                   </select>
+                  <span className="text-red-500 font-semibold">{error.genderError?error.genderError:""}</span>
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700">
-                    Blood Group<span class="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Blood Group<span className="text-red-500">*</span>
                   </label>
-                  <select name="bloodgroup" onChange={(e)=>getPatientValue(e)} class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                  <select name="bloodgroup" onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     <option>Select Group</option>
                     <option value={"A+"}>A+</option>
                     <option value={"A-"}>A</option>
@@ -151,59 +323,65 @@ const Patient = () => {
                     <option value={"O+"}>O+</option>
                     <option value={"O-"}>O-</option>
                   </select>
+                  <span className="text-red-500 font-semibold" >{error.bloodgroupError?error.bloodgroupError:""}</span>
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700">
-                    Date of Birth<span class="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Date of Birth<span className="text-red-500">*</span>
                   </label>
                   <input
                     type="date"
                     name="dob"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     onChange={(e)=>getPatientValue(e)}
                   />
+                  <span className="text-red-500 font-semibold">{error.dobError?error.dobError:""}</span>
                 </div>
               </div>
-              <div class="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700">
-                    Country<span class="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Country<span className="text-red-500">*</span>
                   </label>
-                  <select name="country" onChange={(e)=>getPatientValue(e)} class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                  <select name="country" onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     <option>Select Country</option>
                     <option value={"India"}>India</option>
                   </select>
+                  <span className="text-red-500 font-semibold">{error.countryError?error.countryError:""}</span>
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700">
-                    State<span class="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-gray-700">
+                    State<span className="text-red-500">*</span>
                   </label>
-                  <select name="state" onChange={(e)=>getPatientValue(e)} class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                  <select name="state" onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     <option>Select State</option>
                     <option value={"gujarat"}>Gujarat</option>
                   </select>
+                  <span className="text-red-500 font-semibold">{error.stateError?error.stateError:""}</span>
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700">
-                    City<span class="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-gray-700">
+                    City<span className="text-red-500">*</span>
                   </label>
-                  <select name="city" onChange={(e)=>getPatientValue(e)} class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                  <select name="city" onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     <option>Select City</option>
                     <option value={"Surat"}>Surat</option>
                   </select>
+                  <span className="text-red-500 font-semibold">{error.cityError?error.cityError:""}</span>
                 </div>
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700">
                   Address
                 </label>
                 <input
                   type="text"
                   name="add"
                   placeholder="Enter Address"
-                  class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                   onChange={(e)=>getPatientValue(e)}
                 />
+                <span className="text-red-500 font-semibold">{error.addError?error.addError:""}</span>
               </div>
               <div className="mb-4">
               <label className="block text-sm font-medium mb-1">
@@ -223,6 +401,7 @@ const Patient = () => {
                   } absolute right-3 top-3 text-gray-500 cursor-pointer`}
                   onClick={() => setShowPassword(!showPassword)}
                 />
+                <span>{error.passError?error.passError:""}</span>
               </div>
             </div>
             <div className="mb-4">
@@ -233,7 +412,7 @@ const Patient = () => {
                 <input
                  type={showPassword ? "text" : "password"}
                   placeholder="Enter Confirm Password"
-                  name="ConfirmPass"
+                  name="confirmPass"
                   className={"w-full px-3 py-2 border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"}
                   onChange={(e)=>getPatientValue(e)}
                 />
@@ -243,21 +422,22 @@ const Patient = () => {
                   } absolute right-3 top-3 text-gray-500 cursor-pointer`}
                   onClick={() => setShowPassword(!showPassword)}
                 />
+                <span >{error.confirmPassError?error.confirmPassError:""}</span>
               </div>
               
             </div>
-              <div class="flex items-center">
+              <div className="flex items-center">
                 <input
                   type="checkbox"
-                  class="h-4 w-4 text-blue-600 border-gray-300 rounded"
+                  className="h-4 w-4 text-blue-600 border-gray-300 rounded"
                 />
                 <label class="ml-2 block text-sm text-gray-900">
                   I agree to all the{" "}
-                  <a href="#" class="text-blue-600">
+                  <a href="#" className="text-blue-600">
                     T&C
                   </a>{" "}
                   and{" "}
-                  <a href="#" class="text-blue-600">
+                  <a href="#" className="text-blue-600">
                     Privacy Policies
                   </a>
                   .
@@ -265,33 +445,33 @@ const Patient = () => {
               </div>
               <button
                 type="submit"
-                class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
+                className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
               >
                 Register
               </button>
-              <p class="text-center text-sm text-gray-600 mt-4">
+              <p className="text-center text-sm text-gray-600 mt-4">
                 Already have an account?{" "}
-                <Link to={"/login"} class="text-blue-600">
+                <Link to={"/login"} className="text-blue-600">
                   Login
                 </Link>
               </p>
             </form>
             <Link 
               to={"/"}
-              className="w-full bg-blue-500 text-white py-4  px-3   rounded-md hover:bg-blue-600"
+              className="w-full bg-blue-500 text-white py-4 px-3 rounded-md hover:bg-blue-600"
             >
               Admin Register  
             </Link>
           </div>
-          <div class="w-1/2 flex justify-center items-center">
-            <div class="text-center">
+          <div className="w-1/2 flex justify-center items-center">
+            <div className="text-center">
               <img
                 src={img}
                 alt="Illustration of a doctor with medical icons"
-                class="mb-4"
+                className="mb-4"
               />
-              <h2 class="text-2xl font-semibold">Hospital</h2>
-              <p class="text-gray-600">
+              <h2 className="text-2xl font-semibold">Hospital</h2>
+              <p className="text-gray-600">
                 You Can stay your Hospital and Contact With Your Facility
               </p>
             </div>
