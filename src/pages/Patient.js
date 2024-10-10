@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import img from "../images/Group 1116603021.png";
-import { getValue } from "@testing-library/user-event/dist/utils";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -118,12 +117,17 @@ const Patient = () => {
         setError({...error,passError : "Enter Your Address"})
       } else {
         setError({...error,passError : ""})
+        setPatientData({...patientData,pass:value})
       }
     }
     else if(name === "confirmPass"){
       if (value === "") {
         setError({...error,confirmPassError : "Enter Your Confirm Password"})
-      } else {
+      } 
+      else if(value !== patientData.pass){
+        setError({...error,confirmPassError : "Confirm Password Does Not Match" })
+      }
+      else {
         setError({...error,confirmPassError : ""})
       }
     }
@@ -179,10 +183,15 @@ const Patient = () => {
     else if(patientData.confirmPass === undefined){
       setError({...error,confirmPassError : "Enter Your Confirm Password" })
     }
+    else if(patientData.pass !== patientData.confirmPass){
+      setError({...error,confirmPassError : "Confirm Password Does Not Match" })
+    }
     else {
       try{
         axios.post("http://localhost:3000/patientData",patientData )
-        alert("data Added Successfully  ")
+        alert("data Added Successfully")
+        setPatientData({})
+        setError({})
       }
       catch(err){
         console.log(err)
@@ -206,6 +215,7 @@ const Patient = () => {
                   <input
                     type="text"
                     name="firstName"
+                    value={patientData.firstName?patientData.firstName:""}
                     placeholder="Enter First Name"
                     className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2`}
                     onChange={(e)=>getPatientValue(e)}
@@ -219,6 +229,7 @@ const Patient = () => {
                   <input
                     type="text"
                     name="lastName"
+                    value={patientData.lastName?patientData.lastName:""}
                     placeholder="Enter Last Name"
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     onChange={(e)=>getPatientValue(e)}
@@ -234,6 +245,7 @@ const Patient = () => {
                   <input
                     type="email"
                     name="email"
+                    value={patientData.email?patientData.email:""}
                     placeholder="Enter Email Address"
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     onChange={(e)=>getPatientValue(e)}
@@ -247,6 +259,7 @@ const Patient = () => {
                   <input
                     type="text"
                     name="number"
+                    value={patientData.number?patientData.number:""}
                     placeholder="Enter Phone Number"
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     onChange={(e)=>getPatientValue(e)}
@@ -262,6 +275,7 @@ const Patient = () => {
                   <input
                     type="number"
                     name="age"
+                    value={patientData.age?patientData.age:""}
                     placeholder="Enter Age"
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     onChange={(e)=>getPatientValue(e)}
@@ -275,6 +289,7 @@ const Patient = () => {
                   <input
                     type="number"
                     name="height"
+                    value={patientData.height?patientData.height:""}
                     placeholder="Enter Height"
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     onChange={(e)=>getPatientValue(e)}
@@ -288,6 +303,7 @@ const Patient = () => {
                   <input
                     type="number"
                     name="weight"
+                    value={patientData.weight?patientData.weight:""}
                     placeholder="Enter Weight"
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     onChange={(e)=>getPatientValue(e)}
@@ -300,7 +316,7 @@ const Patient = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     Gender<span className="text-red-500">*</span>
                   </label>
-                  <select name="gender" onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                  <select name="gender" value={patientData.gender?patientData.gender:""} onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     <option>Select Gender</option>
                     <option value={"male"}>Male</option>
                     <option value={"female"}>Female</option>
@@ -312,7 +328,7 @@ const Patient = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     Blood Group<span className="text-red-500">*</span>
                   </label>
-                  <select name="bloodgroup" onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                  <select name="bloodgroup" value={patientData.bloodgroup?patientData.bloodgroup:""} onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     <option>Select Group</option>
                     <option value={"A+"}>A+</option>
                     <option value={"A-"}>A</option>
@@ -332,6 +348,7 @@ const Patient = () => {
                   <input
                     type="date"
                     name="dob"
+                    value={patientData.dob?patientData.dob:""}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     onChange={(e)=>getPatientValue(e)}
                   />
@@ -343,7 +360,7 @@ const Patient = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     Country<span className="text-red-500">*</span>
                   </label>
-                  <select name="country" onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                  <select name="country" value={patientData.country?patientData.country:""} onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     <option>Select Country</option>
                     <option value={"India"}>India</option>
                   </select>
@@ -353,7 +370,7 @@ const Patient = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     State<span className="text-red-500">*</span>
                   </label>
-                  <select name="state" onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                  <select name="state" value={patientData.state?patientData.state:""} onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     <option>Select State</option>
                     <option value={"gujarat"}>Gujarat</option>
                   </select>
@@ -363,7 +380,7 @@ const Patient = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     City<span className="text-red-500">*</span>
                   </label>
-                  <select name="city" onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                  <select name="city" value={patientData.city?patientData.city:""} onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     <option>Select City</option>
                     <option value={"Surat"}>Surat</option>
                   </select>
@@ -377,6 +394,7 @@ const Patient = () => {
                 <input
                   type="text"
                   name="add"
+                  value={patientData.add?patientData.add:""}
                   placeholder="Enter Address"
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                   onChange={(e)=>getPatientValue(e)}
@@ -392,6 +410,7 @@ const Patient = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter Password"
                   name="pass"
+                  value={patientData.pass?patientData.pass:""}
                   className={"w-full px-3 py-2 border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"}
                   onChange={(e)=>getPatientValue(e)}
                 />
@@ -413,6 +432,7 @@ const Patient = () => {
                  type={showPassword ? "text" : "password"}
                   placeholder="Enter Confirm Password"
                   name="confirmPass"
+                  value={patientData.confirmPass?patientData.confirmPass:""}
                   className={"w-full px-3 py-2 border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"}
                   onChange={(e)=>getPatientValue(e)}
                 />

@@ -90,10 +90,7 @@ const [hospitalData,setHospitalData] = useState([])
           ConfirmPassError: "Please Confirm Your Password",
         });
       } else if (value !== registerData.pass) {
-        setErrors({
-          ...errors,
-          ConfirmPassError: "Confirm Password & Password Is Not Match",
-        });
+        setErrors({...errors,ConfirmPassError: "Confirm Password & Password Is Not Match"});
       } else {
         setErrors({ ...errors, ConfirmPassError: "" });
       }
@@ -102,19 +99,7 @@ const [hospitalData,setHospitalData] = useState([])
 
   const submitData = async (e) => {
     e.preventDefault();
-    const {
-      FirstName,
-      LastName,
-      email,
-      number,
-      Country,
-      State,
-      City,
-      Gender,
-      Hospital,
-      pass,
-      ConfirmPass,
-    } = registerData;
+    const {FirstName,LastName,email, number,Country, State,City,Gender, Hospital, pass,ConfirmPass} = registerData;
 
     if (!FirstName) {
       setErrors({ ...errors, FirstNameError: "First Name Is Required" });
@@ -148,14 +133,10 @@ const [hospitalData,setHospitalData] = useState([])
       });
     } else {
       try {
-        const res = await axios.post(
-          "http://localhost:3000/data",
-          registerData
-        );
+        const res = await axios.post("http://localhost:3000/data",registerData);
         alert("Registration Successful");
         setErrors({});
         setRegisterData({})
-        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -535,7 +516,7 @@ const [hospitalData,setHospitalData] = useState([])
                  type={showPassword ? "text" : "password"}
                   placeholder="Enter Confirm Password"
                   name="ConfirmPass"
-                  value={registerData.confirmPass?registerData.FirstName:""}
+                  value={registerData.ConfirmPass?registerData.ConfirmPass:""}
                   className={`w-full px-3 py-2 border-2 rounded-md 
                     ${
                       errors.ConfirmPassError
