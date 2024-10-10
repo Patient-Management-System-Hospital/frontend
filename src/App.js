@@ -16,6 +16,10 @@ import Patient from "./pages/Patient";
 import PatientDetails from "./pages/PatientDetails";
 import PrescriptionAccess from "./pages/PrescriptionAccess";
 import AppointmentBooking from "./pages/AppointmentBooking";
+import BookAppointment from "./pages/BookAppointment";
+import PreviousAppointment from "./pages/PreviousAppointment";
+import CancelAppointment from "./pages/CancelAppointment";
+import PendingAppointment from "./pages/PendingAppointment";
 
 function App() {
   return (
@@ -38,6 +42,10 @@ function App() {
         <Route path="/patientDetails" element={<PatientDetails/>}/>
         <Route path="/prescriptionAccess" element={<PrescriptionAccess/>}/>
         <Route path="/appointmentBooking" element={<AppointmentBooking/>}/>
+        <Route path="/bookAppointment" element={<BookAppointment/>}/>
+        <Route path="/previousAppointment" element={<PreviousAppointment/>}/>
+        <Route path="/cancelAppointment" element={<CancelAppointment/>}/>
+        <Route path="/pendingAppointment" element={<PendingAppointment/>}/>
       </Routes>
     </BrowserRouter>
     

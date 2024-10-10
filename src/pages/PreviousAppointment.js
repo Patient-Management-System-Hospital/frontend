@@ -1,8 +1,7 @@
 import React from 'react'
-import Object from "../images/OBJECTS.png"
 import { Link } from 'react-router-dom'
 
-const AppointmentBooking = () => {
+const PreviousAppointment = () => {
   return (
     <div>
       <div className="flex">
@@ -144,4 +143,4 @@ const AppointmentBooking = () => {
   )
 }
 
-export default AppointmentBooking
+export default PreviousAppointment
