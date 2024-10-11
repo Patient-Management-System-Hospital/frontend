@@ -217,7 +217,8 @@ const Patient = () => {
                     name="firstName"
                     value={patientData.firstName?patientData.firstName:""}
                     placeholder="Enter First Name"
-                    className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2`}
+                    className={`mt-1 block w-full border-2 border-gray-300 rounded-md shadow-sm p-2
+                      ${error.firstNameError ? "border-red-500":patientData.firstName?"border-green-500":"focus:outline-none"}`}
                     onChange={(e)=>getPatientValue(e)}
                   />
                   <span className="text-red-500 font-semibold">{error.firstNameError?error.firstNameError:""}</span>
@@ -231,7 +232,8 @@ const Patient = () => {
                     name="lastName"
                     value={patientData.lastName?patientData.lastName:""}
                     placeholder="Enter Last Name"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 
+                      ${error.lastNameError ? "border-red-500":patientData.lastName?"border-green-500":"focus:outline-none"}`}
                     onChange={(e)=>getPatientValue(e)}
                   />
                   <span className="text-red-500 font-semibold">{error.lastNameError?error.lastNameError:""}</span>
@@ -247,7 +249,8 @@ const Patient = () => {
                     name="email"
                     value={patientData.email?patientData.email:""}
                     placeholder="Enter Email Address"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 
+                      ${error.emailError ? "border-red-500":patientData.email?"border-green-500":"focus:outline-none"}`}
                     onChange={(e)=>getPatientValue(e)}
                   />
                   <span className="text-red-500 font-semibold">{error.emailError?error.emailError:""}</span>
@@ -261,7 +264,8 @@ const Patient = () => {
                     name="number"
                     value={patientData.number?patientData.number:""}
                     placeholder="Enter Phone Number"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2
+                      ${error.numberError ? "border-red-500":patientData.number?"border-green-500":"focus:outline-none"}`}
                     onChange={(e)=>getPatientValue(e)}
                   />
                   <span>{error.numberError?error.numberError:""}</span>
@@ -277,7 +281,8 @@ const Patient = () => {
                     name="age"
                     value={patientData.age?patientData.age:""}
                     placeholder="Enter Age"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2
+                      ${error.ageError ? "border-red-500":patientData.age?"border-green-500":"focus:outline-none"}`}
                     onChange={(e)=>getPatientValue(e)}
                   />
                   <span>{error.ageError?error.ageError:""}</span>
@@ -291,7 +296,8 @@ const Patient = () => {
                     name="height"
                     value={patientData.height?patientData.height:""}
                     placeholder="Enter Height"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2
+                      ${error.heightError ? "border-red-500":patientData.height?"border-green-500":"focus:outline-none"}`}
                     onChange={(e)=>getPatientValue(e)}
                   />
                   <span>{error.heightError?error.heightError:""}</span>
@@ -305,7 +311,8 @@ const Patient = () => {
                     name="weight"
                     value={patientData.weight?patientData.weight:""}
                     placeholder="Enter Weight"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2
+                      ${error.weightError ? "border-red-500":patientData.weight?"border-green-500":"focus:outline-none"}`}
                     onChange={(e)=>getPatientValue(e)}
                   />
                   <span className="text-red-500 font-semibold">{error.weightError?error.weightError:""}</span>
@@ -316,7 +323,8 @@ const Patient = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     Gender<span className="text-red-500">*</span>
                   </label>
-                  <select name="gender" value={patientData.gender?patientData.gender:""} onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                  <select name="gender" value={patientData.gender?patientData.gender:""} onChange={(e)=>getPatientValue(e)} className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2
+                    ${error.genderError ? "border-red-500":patientData.gender?"border-green-500":"focus:outline-none"}`}>
                     <option>Select Gender</option>
                     <option value={"male"}>Male</option>
                     <option value={"female"}>Female</option>
@@ -328,7 +336,8 @@ const Patient = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     Blood Group<span className="text-red-500">*</span>
                   </label>
-                  <select name="bloodgroup" value={patientData.bloodgroup?patientData.bloodgroup:""} onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                  <select name="bloodgroup" value={patientData.bloodgroup?patientData.bloodgroup:""} onChange={(e)=>getPatientValue(e)} className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2
+                    ${error.bloodgroupError ? "border-red-500":patientData.bloodgroup?"border-green-500":"focus:outline-none"}`}>
                     <option>Select Group</option>
                     <option value={"A+"}>A+</option>
                     <option value={"A-"}>A</option>
@@ -349,7 +358,8 @@ const Patient = () => {
                     type="date"
                     name="dob"
                     value={patientData.dob?patientData.dob:""}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2
+                      ${error.dobError ? "border-red-500":patientData.dob?"border-green-500":"focus:outline-none"}`}
                     onChange={(e)=>getPatientValue(e)}
                   />
                   <span className="text-red-500 font-semibold">{error.dobError?error.dobError:""}</span>
@@ -360,7 +370,8 @@ const Patient = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     Country<span className="text-red-500">*</span>
                   </label>
-                  <select name="country" value={patientData.country?patientData.country:""} onChange={(e)=>getPatientValue(e)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                  <select name="country" value={patientData.country?patientData.country:""} onChange={(e)=>getPatientValue(e)} className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2
+                    ${error.countryError ? "border-red-500":patientData.country?"border-green-500":"focus:outline-none"}`}>
                     <option>Select Country</option>
                     <option value={"India"}>India</option>
                   </select>
