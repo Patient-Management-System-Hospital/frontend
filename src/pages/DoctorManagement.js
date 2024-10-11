@@ -36,28 +36,28 @@ const DoctorManagement = () => {
             <nav>
               <ul>
                 <li className="mb-4">
-                  <a
-                    href="#"
+                  <Link
+                    to={"/dashboard"}
                     className="flex items-center text-gray-700 hover:text-blue-600"
                   >
                     <i className="fas fa-tachometer-alt mr-3"></i> Dashboard
-                  </a>
+                  </Link>
                 </li>
                 <li className="mb-4">
-                  <a
-                    href="#"
+                  <Link
+                    to={"/doctorMangement"}
                     className="flex items-center text-blue-600 font-bold"
                   >
                     <i className="fas fa-user-md mr-3"></i> Doctor Management
-                  </a>
+                  </Link>
                 </li>
                 <li className="mb-4">
-                  <a
-                    href="#"
+                  <Link
+                    to={"/patientManagement"}
                     className="flex items-center text-gray-700 hover:text-blue-600"
                   >
                     <i className="fas fa-users mr-3"></i> Patient Management
-                  </a>
+                  </Link>
                 </li>
                 <li className="mb-4">
                   <a

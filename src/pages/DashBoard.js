@@ -42,13 +42,13 @@ const DashBoard = () => {
             <i className="fas fa-user-md mr-3"></i>
             Doctor Management
           </Link>
-          <a
-            href="#"
+          <Link
+            to={"/patientManagement"}
             className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
           >
             <i className="fas fa-users mr-3"></i>
             Patient Management
-          </a>
+          </Link>
           <div className="py-2 px-6 text-gray-600">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
@@ -124,11 +124,11 @@ const DashBoard = () => {
           <h2 className="text-2xl font-bold text-blue-600">Profile Setting</h2>
           <div className="flex mt-6">
             <div className="w-1/3">
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center text-center">
                 <img
                   src="https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg"
                   alt="Profile Picture"
-                  className="w-24 h-24 rounded-full object-cover "
+                  className="w-24 h-24 rounded-full object-cover inline-block"
                 />
                 <h3 className="mt-4 text-xl font-bold">
                   {loggedInUser?.FirstName} {loggedInUser?.LastName}

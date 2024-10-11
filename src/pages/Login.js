@@ -6,6 +6,7 @@ import axios from "axios";
 const Login = () => {
   let [loginUser, setLoginUer] = useState({});
   let [registerUser, setRegisterUser] = useState([]);
+  let [doctorData,setDoctorData] = useState([])
   let [patientUser, setPatientUser] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
   let [error,setError] = useState({})
@@ -37,6 +38,7 @@ const Login = () => {
 
   useEffect(() => {
     getPatientData();
+    getDoctor()
     getRegisterUser();
   }, []);
   console.log(registerUser);
@@ -51,6 +53,11 @@ const Login = () => {
     setPatientUser(response.data);
   };
 
+  const getDoctor = async ()=>{
+    const result = await axios.get("http://localhost:3000/doctor")
+    setDoctorData(result.data)
+  }
+
   const submitUser = (e) => {
     e.preventDefault()
     if (loginUser.email === undefined) {
@@ -60,19 +67,23 @@ const Login = () => {
         setError({...error,passError:"Enter Your Password"})
     }
     else {
-        const user = registerUser.find(
-            (v) => v.email === loginUser.email && v.pass === loginUser.pass
-          );
-          const patient = patientUser.find(
-            (v) => v.email === loginUser.email && v.pass === loginUser.pass
-          );
+        const user = registerUser.find((v) => v.email === loginUser.email && v.pass === loginUser.pass);
+          const doctor = doctorData.find((v)=>v.email === loginUser.email && v.pass === loginUser.pass)
+          const patient = patientUser.find((v) => v.email === loginUser.email && v.pass === loginUser.pass);
+
           if (user) {
             alert("loged in");
             axios.post("http://localhost:3000/loginUser", loginUser);
             navigate("/dashboard", { state: { user } });
             setLoginUer({})
-          } else if (patient) {
+          } 
+          else if(doctor){
+            alert("Doctor Login Success")
+            navigate("/")
+          }
+          else if (patient) {
             alert("Patient Login Success");
+            navigate("/patientDetails")
           }
           else{
               alert("email or password are not match")

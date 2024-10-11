@@ -146,13 +146,13 @@ const EditProfile = () => {
         </div>
         <div className="mt-6 bg-white shadow-md rounded-lg p-6">
           <h2 className="text-2xl font-bold text-blue-600">Profile Setting</h2>
-          <div className="flex mt-6">
+          <div className="flex mt-6 items-center">
             <div className="w-1/3">
               <div className="flex flex-col items-center">
                 <img
                   src="https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg"
                   alt="Profile Picture"
-                  className="w-24 h-24 rounded-full object-cover "
+                  className="w-48 h-48 rounded-full object-cover"
                 />
                 <h3 className="mt-4 text-xl font-bold">
                   {loggedInUser?.FirstName} {loggedInUser?.LastName}
@@ -163,10 +163,10 @@ const EditProfile = () => {
                 
               </div>
             </div>
-            <div className="w-2/3 ml-6">
+            <div className="w-2/3">
               <h3 className="text-lg font-bold">Profile</h3>
               <form onSubmit={(e) => handleSubmit(e)}>
-                <div className="grid grid-cols-2 gap-6 mt-4">
+                <div className="grid grid-cols-3 gap-4 mt-4">
                   <div>
                     <label className="block text-gray-600">
                       First Name<span className="text-red-500">*</span>
