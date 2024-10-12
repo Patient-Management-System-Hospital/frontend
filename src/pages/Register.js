@@ -1,20 +1,31 @@
 import { useEffect, useState } from "react";
 import img from "../images/Group 1116603021.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const Register = () => {
   
   const [registerData, setRegisterData] = useState({});
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-const [showModal, setShowModal] = useState(false);
-const [newHospital, setNewHospital] = useState({})
-const [hospitalData,setHospitalData] = useState([])
+  const [showModal, setShowModal] = useState(false);
+  const [newHospital, setNewHospital] = useState({});
+  const [hospitalData,setHospitalData] = useState([]);
+  const [isChecked, setIsChecked] = useState();
+  const navigate = useNavigate();
 
-  const getValue = (e) => {
+  const emailFormula = /\S+@\S+\.\S+/;
+  const numberFormula = /^\d{10}$/;
+  const passFormula =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  const getValue = (e) => { 
     const name = e.target.name;
     const value = e.target.value;
+    const isChecked = e.target.checked
+    
+    setIsChecked(isChecked)
 
     setRegisterData({ ...registerData, [name]: value });
     
@@ -33,13 +44,21 @@ const [hospitalData,setHospitalData] = useState([])
     } else if (name === "email") {
       if (value === "") {
         setErrors({ ...errors, emailError: "Email Is Required" });
-      } else {
+      }
+      else if(!emailFormula.test(value)){
+        setErrors({...errors,emailError: "Email Is Invalid"})
+      } 
+      else {
         setErrors({ ...errors, emailError: "" });
       }
     } else if (name === "number") {
       if (value === "") {
         setErrors({ ...errors, numberError: "Number Is Required" });
-      } else {
+      }
+      else if(!numberFormula.test(value)){
+        setErrors({ ...errors, numberError: "Phone Number must be 10 digits" });
+      }
+       else {
         setErrors({ ...errors, numberError: "" });
       }
     } else if (name === "Country") {
@@ -79,6 +98,9 @@ const [hospitalData,setHospitalData] = useState([])
     } else if (name === "pass") {
       if (value === "") {
         setErrors({ ...errors, passError: "Password Is Required" });
+      }
+      else if(!passFormula.test(value)){
+        setErrors({ ...errors, passError: "Password must be at least 8 characters, contain one uppercase letter, one lowercase letter, one number, and one special character" });
       } else {
         setErrors({ ...errors, passError: "" });
         setRegisterData({ ...registerData, pass: value });
@@ -94,6 +116,13 @@ const [hospitalData,setHospitalData] = useState([])
       } else {
         setErrors({ ...errors, ConfirmPassError: "" });
       }
+    } else if(name === "terms"){
+      if (!isChecked) {
+        setErrors({...errors,checkedError:"Please agree to the terms and conditions."})
+      }
+       else {
+        setErrors({...errors,checkedError:""})
+      }
     }
   };
 
@@ -107,8 +136,12 @@ const [hospitalData,setHospitalData] = useState([])
       setErrors({ ...errors, LastNameError: "Last Name Is Required" });
     } else if (!email) {
       setErrors({ ...errors, emailError: "Email Is Required" });
+    }else if(!emailFormula.test(email)){
+      setErrors({ ...errors, emailError: "Email Is Invalid" });
     } else if (!number) {
       setErrors({ ...errors, numberError: "Number Is Required" });
+    } else if(!numberFormula.test(number)){
+      setErrors({ ...errors, numberError: "Phone Number must be 10 digits"});
     } else if (!Country) {
       setErrors({ ...errors, CountryError: "Please Select Your Country" });
     } else if (!State) {
@@ -121,6 +154,8 @@ const [hospitalData,setHospitalData] = useState([])
       setErrors({ ...errors, HospitalError: "Please Select Your Hospital" });
     } else if (!pass) {
       setErrors({ ...errors, passError: "Password is Required" });
+    } else if(!passFormula.test(pass)){
+      setErrors({ ...errors, passError: "Password must be at least 8 characters, contain one uppercase letter, one lowercase letter, one number, and one special character" });
     } else if (!ConfirmPass) {
       setErrors({
         ...errors,
@@ -131,10 +166,19 @@ const [hospitalData,setHospitalData] = useState([])
         ...errors,
         ConfirmPassError: "Confirm Password & Password Do Not Match",
       });
+    }
+    else if(!isChecked){
+      setErrors({...errors,checkedError:"Please agree to the terms and conditions."})
     } else {
       try {
         const res = await axios.post("http://localhost:3000/data",registerData);
-        alert("Registration Successful");
+        toast.success("Admin Registration Successfull", {
+          position: "top-center",
+          autoClose: 2500
+        });
+        setTimeout(() => {
+          navigate("/login")
+        }, 3000);
         setErrors({});
         setRegisterData({})
       } catch (error) {
@@ -414,7 +458,7 @@ const [hospitalData,setHospitalData] = useState([])
                 </span>
               </div>
             </div>
-            <div className="+`+b-4">
+            <div className="mb-4">
               <label className="block text-sm font-medium mb-1">
                 Gender<span className="text-red-500">*</span>
               </label>
@@ -466,9 +510,7 @@ const [hospitalData,setHospitalData] = useState([])
                     </>
                   )
                 })}
-                <option value="add" className="text-blue-500">
-          + Add New Hospital
-        </option>
+                <option value="add" className="text-blue-500"> + Add New Hospital</option>
                     
               </select>
               <span className="text-red-500 font-semibold">
@@ -543,26 +585,18 @@ const [hospitalData,setHospitalData] = useState([])
               <label className="inline-flex items-center">
                 <input
                   type="checkbox"
+                  name="terms"
                   className="form-checkbox h-4 w-4 text-blue-500"
+                  onChange={(e) => getValue(e)} 
                 />
                 <span className="ml-2 text-sm">
                   I agree to all the{" "}
-                  <a
-                    href="#"
-                    className="font-semibold text-blue-500 hover:text-blue-800"
-                  >
-                    T&amp;C
-                  </a>{" "}
+                  <a href="#" className="font-semibold text-blue-500 hover:text-blue-800">T&amp;C </a>{" "}
                   and{" "}
-                  <a
-                    href="#"
-                    className="font-semibold text-blue-500 hover:text-blue-800"
-                  >
-                    Privacy Policies
-                  </a>
-                  .
+                  <a href="#" className="font-semibold text-blue-500 hover:text-blue-800">Privacy Policies</a>.
                 </span>
-              </label>
+              </label><br/>
+              <span className="font-semibold text-red-500">{errors.checkedError?errors.checkedError:""}</span>
             </div>
             <button
               type="submit"
@@ -749,6 +783,7 @@ const [hospitalData,setHospitalData] = useState([])
           </div>
         </div>
       )}
+      <ToastContainer/>
     </>
   );
 };

@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import img from "../images/Group 1116602997.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from 'sweetalert2'
+
+// or via CommonJS
+
 
 const ResetPassword = () => {
 
@@ -13,6 +17,7 @@ const ResetPassword = () => {
   const location = useLocation()
 
   const { email } = location.state;
+
   
 
   const handleSubmit = async () => {
@@ -43,8 +48,14 @@ const ResetPassword = () => {
             pass: newPassword,
             ConfirmPass:confirmPassword,
           });
-          alert("Password reset successfully!");
-          navigate("/login");
+          Swal.fire({
+            title: 'success',
+            text: 'Password Reset Successfull',
+            icon: 'success',
+            confirmButtonText: 'Save'
+          }).then(()=>{
+            navigate("/login")
+          })
         }
         else if(patient){
           await axios.put(`http://localhost:3000/patientData/${patient.id}`,{
@@ -52,12 +63,22 @@ const ResetPassword = () => {
             pass: newPassword,
             ConfirmPass:confirmPassword
           })
-          alert("Password reset successfully!");
-          navigate("/login");
+          Swal.fire({
+            title: 'success',
+            text: 'Password Reset Successfull',
+            icon: 'success',
+            confirmButtonText: 'Save'
+          }).then(()=>{
+            navigate("/login")
+          })
         }
         else {
-          console.log("something wrong");
-          
+          Swal.fire({
+            title: "Error!",
+            text: "User not found.",
+            icon: "error",
+            confirmButtonText: "Try Again",
+          });
         }
       } catch (error) {
         console.error("Error updating password:", error);

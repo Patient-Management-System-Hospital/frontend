@@ -22,8 +22,8 @@
       "City": "Surat",
       "State": "GUJARAT",
       "Country": "India",
-      "pass": "123",
-      "ConfirmPass": "123",
+      "pass": "rcg",
+      "ConfirmPass": "rcg",
       "id": "2a7d"
     },
     {
@@ -39,6 +39,35 @@
       "Hospital": "Kiraan Hospitaal",
       "pass": "123",
       "ConfirmPass": "123"
+    },
+    {
+      "id": "1931",
+      "FirstName": "gohil",
+      "LastName": "gohil",
+      "email": "gohil309@gmail.com",
+      "number": "8400010872",
+      "Country": "India",
+      "State": "GUJARAT",
+      "City": "Surat",
+      "Gender": "Male",
+      "Hospital": "City Hospital",
+      "pass": "RCg123",
+      "ConfirmPass": "RCg123"
+    },
+    {
+      "id": "82c6",
+      "FirstName": "parash",
+      "LastName": "Gohil",
+      "email": "rohit@gmail.com",
+      "number": "6359377814",
+      "Country": "India",
+      "State": "GUJARAT",
+      "City": "Surat",
+      "Gender": "Male",
+      "Hospital": "Appolo Hopital",
+      "pass": "rcG124$$",
+      "ConfirmPass": "rcG124$$",
+      "terms": "on"
     }
   ],
   "loginUser": [
@@ -86,6 +115,11 @@
       "id": "7315",
       "pass": "123",
       "email": "ronny@gmail.com"
+    },
+    {
+      "id": "8a5c",
+      "email": "ronny@gmail.com",
+      "pass": "123"
     }
   ],
   "hopital": [
@@ -129,15 +163,6 @@
       "id": "ada6",
       "hospitalName": "City Hospital",
       "hospitalAdd": "testing",
-      "contry": "India",
-      "state": "Gujarat",
-      "city": "Vadodara",
-      "zipcode": "390056"
-    },
-    {
-      "id": "6cd6",
-      "hospitalName": "rrrrr",
-      "hospitalAdd": "rrr",
       "contry": "India",
       "state": "Gujarat",
       "city": "Vadodara",
@@ -279,6 +304,26 @@
       "id": "9fca",
       "email": "tilak@gmail.com",
       "pass": "123"
+    },
+    {
+      "id": "6fd6",
+      "firstName": "testing",
+      "lastName": "asftg",
+      "email": "rohit@gmail.com",
+      "number": "6359377814",
+      "age": "32",
+      "height": "45",
+      "weight": "45",
+      "gender": "male",
+      "bloodgroup": "AB-",
+      "dob": "2024-10-22",
+      "country": "India",
+      "state": "gujarat",
+      "city": "Surat",
+      "add": "sa",
+      "pass": "rcG123@@!",
+      "confirmPass": "rcG123@@!",
+      "terms": "on"
     }
   ]
 }
