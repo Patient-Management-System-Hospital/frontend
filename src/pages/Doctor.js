@@ -1,7 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const Doctor = () => {
+    const location = useLocation();
+    const loggedInDoctor = location.state?.doctor;
+    const navigate = useNavigate()
+
+    const handleEditProfile = () => {
+        navigate("/doctorEdit", { state: { user: loggedInDoctor } }); 
+      };
+
   return (
     <div>
       <div className="min-h-screen bg-gray-100 flex">
@@ -21,55 +29,56 @@ const Doctor = () => {
         </div>
         <nav className="mt-10">
           <Link
-            to={"/dashboard"}
-            className="flex items-center py-2 px-6 bg-blue-50 text-blue-600"
+            to={""}
+            className="flex items-center py-2 px-6 bg-blue-50 text-blue-600 text-sm"
           >
-            <i className="fas fa-tachometer-alt mr-3"></i>
-            Dashboard
+            <i class="fa-solid fa-calendar-days mr-3"></i>
+            Appointment Management
           </Link>
           <Link
-            to={"/doctorMangement"}
-            className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+            to={""}
+            className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600 text-sm"
           >
-            <i className="fas fa-user-md mr-3"></i>
-            Doctor Management
+            <i class="fa-solid fa-clipboard mr-3"></i>
+            Patient Record Access
           </Link>
-          <Link
-            to={"/patientManagement"}
-            className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
-          >
-            <i className="fas fa-users mr-3"></i>
-            Patient Management
-          </Link>
+          
           <div className="py-2 px-6 text-gray-600">
             <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <i className="fas fa-file-invoice-dollar mr-3"></i>
-                Billing And Payments
+              <div className="flex items-center text-sm">
+              <i class="fa-solid fa-briefcase-medical mr-2"></i>
+                Priscription Tools
               </div>
               <i className="fas fa-chevron-down"></i>
             </div>
             <div className="ml-6 mt-2">
               <a
                 href="#"
-                className="block py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+                className="block py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 text-sm"
               >
                 Submenu 1
               </a>
               <a
                 href="#"
-                className="block py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+                className="block py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 text-sm"
               >
                 Submenu 2
               </a>
             </div>
           </div>
+          <Link
+            to={""}
+            className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600 text-sm"
+          >
+            <i class="fa-solid fa-phone mr-2"></i>
+            Teleconsulation Module
+          </Link>
           <a
             href="#"
-            className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+            className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600 text-sm"
           >
-            <i className="fas fa-chart-line mr-3"></i>
-            Reporting And Analytics
+            <i class="fa-solid fa-message mr-2"></i>
+            Chat
           </a>
         </nav>
         <div className="mt-auto p-6">
@@ -105,7 +114,7 @@ const Doctor = () => {
               />
               <div className="ml-3">
                 <p className="text-gray-600">
-                  
+                {loggedInDoctor?.name} {loggedInDoctor?.LastName}
                 </p>
                 <p className="text-sm text-gray-500">Admin</p>
               </div>
@@ -120,10 +129,10 @@ const Doctor = () => {
                 <img
                   src="https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg"
                   alt="Profile Picture"
-                  className="w-24 h-24 rounded-full object-cover inline-block"
+                  className="w-32 h-32 rounded-full object-cover inline-block mr-24"
                 />
                 <h3 className="mt-4 text-xl font-bold">
-                 Doctor
+                {loggedInDoctor?.name} {loggedInDoctor?.LastName}
                 </h3>
               </div>
               <div className="mt-6">
@@ -139,20 +148,21 @@ const Doctor = () => {
                     <Link to={"/terms"} >Terms & Condition</Link>
                   </li>
                   <li className="py-2 px-4 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-md">
-                    <Link to={"/"}>Privacy Policy</Link>
+                    <Link to={"/privacy"}>Privacy Policy</Link>
                   </li>
                 </ul>
               </div>
             </div>
-            <div className="w-2/3 ml-6">
+            <div className="w-2/3">
               <h3 className="text-lg font-bold">Profile</h3>
-              <div className="grid grid-cols-2 gap-6 mt-4">
+              <div className="grid grid-cols-3 gap-3 mt-4">
                 <div>
                   <label className="block text-gray-600">
                     First Name<span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
+                    value={loggedInDoctor?.name} 
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
@@ -171,6 +181,7 @@ const Doctor = () => {
                   </label>
                   <input
                     type="email"
+                    value={loggedInDoctor?.email}
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
@@ -180,6 +191,7 @@ const Doctor = () => {
                   </label>
                   <input
                     type="text"
+                    value={loggedInDoctor?.number}
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
@@ -189,6 +201,7 @@ const Doctor = () => {
                   </label>
                   <input
                     type="text"
+                    value={loggedInDoctor?.hospitalname}
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
@@ -198,6 +211,7 @@ const Doctor = () => {
                   </label>
                   <input
                     type="text"
+                    value={loggedInDoctor?.gender}
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
@@ -207,6 +221,7 @@ const Doctor = () => {
                   </label>
                   <input
                     type="text"
+                    value={loggedInDoctor?.city}
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
@@ -216,6 +231,7 @@ const Doctor = () => {
                   </label>
                   <input
                     type="text"
+                    value={loggedInDoctor?.state}
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
@@ -225,12 +241,13 @@ const Doctor = () => {
                   </label>
                   <input
                     type="text"
+                    value={loggedInDoctor?.country}
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
               </div>
               <div className="mt-6">
-                <button className="px-6 py-2 bg-blue-600 text-white rounded-md">
+                <button onClick={handleEditProfile} className="px-6 py-2 bg-blue-600 text-white rounded-md">
                   Edit Profile
                 </button>
               </div>

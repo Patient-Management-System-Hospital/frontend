@@ -124,11 +124,11 @@ const DashBoard = () => {
           <h2 className="text-2xl font-bold text-blue-600">Profile Setting</h2>
           <div className="flex mt-6">
             <div className="w-1/3">
-              <div className="flex flex-col items-center text-center">
+              <div className="flex items-center text-center justify-center">
                 <img
                   src="https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg"
                   alt="Profile Picture"
-                  className="w-24 h-24 rounded-full object-cover inline-block"
+                  className="w-32 h-32 rounded-full object-cover inline-block mr-24"
                 />
                 <h3 className="mt-4 text-xl font-bold">
                   {loggedInUser?.FirstName} {loggedInUser?.LastName}
@@ -147,14 +147,14 @@ const DashBoard = () => {
                     <Link to={"/terms"} >Terms & Condition</Link>
                   </li>
                   <li className="py-2 px-4 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-md">
-                    <Link to={"/    "}>Privacy Policy</Link>
+                    <Link to={"/privacy"}>Privacy Policy</Link>
                   </li>
                 </ul>
               </div>
             </div>
-            <div className="w-2/3 ml-6">
+            <div className="w-2/3 ">
               <h3 className="text-lg font-bold">Profile</h3>
-              <div className="grid grid-cols-2 gap-6 mt-4">
+              <div className="grid grid-cols-3 gap-3 mt-4">
                 <div>
                   <label className="block text-gray-600">
                     First Name<span className="text-red-500">*</span>
