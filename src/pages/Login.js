@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import img from "../images/Group 1116603021.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   let [loginUser, setLoginUer] = useState({});
@@ -72,21 +74,38 @@ const Login = () => {
           const patient = patientUser.find((v) => v.email === loginUser.email && v.pass === loginUser.pass);
 
           if (user) {
-            alert("loged in");
             axios.post("http://localhost:3000/loginUser", loginUser);
-            navigate("/dashboard", { state: { user } });
+            toast.success("Login SuccessFull",{
+              position:"top-center",
+              autoClose:2500
+            })
+            setTimeout(()=>{
+              navigate("/dashboard", { state: { user } });
+            },3000)
             setLoginUer({})
           } 
           else if(doctor){
-            alert("Doctor Login Success")
-            navigate("/")
+            toast.success("Login SuccessFull",{
+              position:"top-center",
+              autoClose:2500
+            })
+            setTimeout(() => {
+              navigate("/")
+            }, 3000);
           }
           else if (patient) {
-            alert("Patient Login Success");
-            navigate("/patientDetails")
+            toast.success("Login SuccessFull",{
+              position:"top-center",
+              autoClose:2500
+            })
+            setTimeout(()=>{
+              navigate("/patientDetails")
+            },3000)
           }
           else{
-              alert("email or password are not match")
+              toast.error("Email Or Password In Not Match",{
+                position:"top-center"
+              })
           } 
         }
   };
@@ -204,6 +223,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </>
   );
 };
