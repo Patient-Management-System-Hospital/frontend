@@ -90,8 +90,9 @@ const Login = () => {
               autoClose:2500
             })
             setTimeout(() => {
-              navigate("/")
+              navigate("/doctor",{state:{doctor}})
             }, 3000);
+            setLoginUer({})
           }
           else if (patient) {
             toast.success("Login SuccessFull",{
