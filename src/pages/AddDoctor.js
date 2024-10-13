@@ -165,7 +165,7 @@ const AddDoctor = () => {
             <h3 className="text-xl font-bold text-gray-700 mb-6">
               Add New Doctor
             </h3>
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-4">
               <div className="col-span-1 flex flex-col items-center">
                 <div className="w-24 h-24 bg-gray-200 rounded-full mb-4">
                   {selectedImage && (
@@ -217,7 +217,7 @@ const AddDoctor = () => {
                   style={{ display: "none" }}
                 />
               </div>
-              <div className="col-span-2 grid grid-cols-2 gap-6">
+              <div className="col-span-2 grid grid-cols-3 gap-3">
                 <div>
                   <label className="block text-gray-700 mb-2">
                     Doctor Name

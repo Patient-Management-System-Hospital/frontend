@@ -23,6 +23,7 @@ import PendingAppointment from "./pages/PendingAppointment";
 import PatientEdit from "./pages/PatientEdit";
 import PatientManagement from "./pages/PatientManagement";
 import Doctor from "./pages/Doctor";
+import DoctorEdit from "./pages/DoctorEdit";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/patientManagement" element={<PatientManagement/>}/>
         <Route path="/addDoc" element={<AddDoctor/>}/>
         <Route path="/doctor" element={<Doctor/>}/>
+        <Route path="/doctorEdit" element={<DoctorEdit/>}/>
         <Route path="/patient" element={<Patient/>}/>
         <Route path="/patientDetails" element={<PatientDetails/>}/>
         <Route path="/patientEdit" element={<PatientEdit/>}/>
