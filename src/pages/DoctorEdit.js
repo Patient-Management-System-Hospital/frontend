@@ -1,10 +1,12 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from 'react-toastify';
 
 const DoctorEdit = () => {
+
+    const [hospitalData,setHospitalData] = useState([])
 
     const location = useLocation();
     const loggedInDoctor = location.state?.user;
@@ -36,6 +38,14 @@ const DoctorEdit = () => {
         autoClose:1000
       })
     }
+
+    useEffect(()=>{
+       const getHospital = async ()=>{
+            const res = await axios.get("http://localhost:3000/hopital")
+            setHospitalData(res.data)
+        }
+        getHospital()
+    })
 
   return (
     <div className="min-h-screen bg-gray-100 flex">
@@ -228,8 +238,13 @@ const DoctorEdit = () => {
                       onChange={(e) => handleChange(e)}
                       className="w-full px-4 py-2 border rounded-md">
                       <option value="">Select Hospital</option>
-                      <option value="Kiraan Hospitaal">Kiraan Hospital</option>
-                      <option value="Apolo Hospital">Apolo Hospital</option>
+                      {hospitalData.map((v,i)=>{
+                        return(
+                            <>
+                                <option value={v.hospitalName}>{v.hospitalName}</option>
+                            </>
+                        )
+                      })}
                     </select>
                   </div>
                   <div>
