@@ -21,70 +21,83 @@ const DoctorManagement = () => {
       <div className="flex h-screen">
         {/* Sidebar */}
         <div className="w-1/5 bg-white shadow-md">
-          <div className="p-6">
-            <div className="flex items-center mb-6">
-              <img
-                src="https://placehold.co/40x40"
-                alt="Hospital Logo"
-                className="mr-3"
-              />
-              <div>
-                <h1 className="text-xl font-bold text-blue-600">Hospital</h1>
-                <p className="text-sm text-gray-500">Tagline here</p>
+          <aside className="w-64 bg-white shadow-md">
+            <div className="p-6">
+              <div className="flex items-center">
+                <img
+                  src="https://placehold.co/40x40"
+                  alt="Hospital Logo"
+                  className="w-10 h-10"
+                />
+                <div className="ml-3">
+                  <h1 className="text-xl font-bold text-blue-600">Hospital</h1>
+                  <p className="text-sm text-gray-500">Tagline here</p>
+                </div>
               </div>
             </div>
-            <nav>
-              <ul>
-                <li className="mb-4">
-                  <Link
-                    to={"/dashboard"}
-                    className="flex items-center text-gray-700 hover:text-blue-600"
-                  >
-                    <i className="fas fa-tachometer-alt mr-3"></i> Dashboard
-                  </Link>
-                </li>
-                <li className="mb-4">
-                  <Link
-                    to={"/doctorMangement"}
-                    className="flex items-center text-blue-600 font-bold"
-                  >
-                    <i className="fas fa-user-md mr-3"></i> Doctor Management
-                  </Link>
-                </li>
-                <li className="mb-4">
-                  <Link
-                    to={"/patientManagement"}
-                    className="flex items-center text-gray-700 hover:text-blue-600"
-                  >
-                    <i className="fas fa-users mr-3"></i> Patient Management
-                  </Link>
-                </li>
-                <li className="mb-4">
+            <nav className="mt-10">
+              <Link
+                to={"/dashboard"}
+                className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+              >
+                <i className="fas fa-tachometer-alt mr-3"></i>
+                Dashboard
+              </Link>
+              <Link
+                to={"/doctorMangement"}
+                className="flex items-center py-2 px-6 bg-blue-50 text-blue-600"
+              >
+                <i className="fas fa-user-md mr-3"></i>
+                Doctor Management
+              </Link>
+              <Link
+                to={"/patientManagement"}
+                className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+              >
+                <i className="fas fa-users mr-3"></i>
+                Patient Management
+              </Link>
+              <div className="py-2 px-6 text-gray-600">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <i className="fas fa-file-invoice-dollar mr-3"></i>
+                    Billing And Payments
+                  </div>
+                  <i className="fas fa-chevron-down"></i>
+                </div>
+                <div className="ml-6 mt-2">
                   <a
                     href="#"
-                    className="flex items-center text-gray-700 hover:text-blue-600"
+                    className="block py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
                   >
-                    <i className="fas fa-file-invoice-dollar mr-3"></i> Billing
-                    And Payments
+                    Submenu 1
                   </a>
-                </li>
-                <li className="mb-4">
                   <a
                     href="#"
-                    className="flex items-center text-gray-700 hover:text-blue-600"
+                    className="block py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
                   >
-                    <i className="fas fa-chart-line mr-3"></i> Reporting And
-                    Analytics
+                    Submenu 2
                   </a>
-                </li>
-              </ul>
+                </div>
+              </div>
+              <a
+                href="#"
+                className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+              >
+                <i className="fas fa-chart-line mr-3"></i>
+                Reporting And Analytics
+              </a>
             </nav>
-          </div>
-          <div className="absolute bottom-0 w-full p-6">
-            <button className="flex items-center text-red-600">
-              <i className="fas fa-sign-out-alt mr-3"></i> Logout
-            </button>
-          </div>
+            <div className="mt-auto p-6">
+              <a
+                href="#"
+                className="flex items-center py-2 px-6 text-red-600 hover:bg-red-50"
+              >
+                <i className="fas fa-sign-out-alt mr-3"></i>
+                Logout
+              </a>
+            </div>
+          </aside>
         </div>
         {/* Main Content */}
         <div className="w-4/5 p-6">
@@ -147,8 +160,7 @@ const DoctorManagement = () => {
                 </tr>
               </thead>
               <tbody>
-                
-               { doctData.map((v, i) => (
+                {doctData.map((v, i) => (
                   <tr key={i} className="border-t">
                     <td className="py-2 flex items-center">
                       <img
@@ -168,13 +180,19 @@ const DoctorManagement = () => {
                     <td className="py-2">{v.quali}</td>
                     <td className="py-2">{v.Specialty_type}</td>
                     <td className="py-2  text-[#718EBF]">
-                        <span className="bg-[#F6F8FB] py-2 px-5  inline-block">{v.working_time}</span>
+                      <span className="bg-[#F6F8FB] py-2 px-5  inline-block">
+                        {v.working_time}
+                      </span>
                     </td>
                     <td className="py-2 text-[#718EBF]">
-                        <span className="bg-[#F6F8FB] py-2 px-5 ">{v.checktime}</span>
+                      <span className="bg-[#F6F8FB] py-2 px-5 ">
+                        {v.checktime}
+                      </span>
                     </td>
                     <td className="py-2 text-[#718EBF]">
-                        <span className="bg-[#F6F8FB] py-2 px-5">{v.break_time}</span>
+                      <span className="bg-[#F6F8FB] py-2 px-5">
+                        {v.break_time}
+                      </span>
                     </td>
                     <td className="py-2 flex items-center">
                       <button className="text-green-500 mr-2">

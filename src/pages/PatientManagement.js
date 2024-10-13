@@ -5,44 +5,83 @@ const PatientManagement = () => {
   return (
     <div>
       <div className="flex">
-                    <aside className="w-64 bg-white h-screen shadow-md fixed">
-                        <div className="p-6">
-                            <div className="flex items-center">
-                                <img src="https://placehold.co/40x40" alt="Hospital Logo" className="mr-2"/>
-                                <div>
-                                    <h1 className="text-xl font-bold text-blue-500">Hospital</h1>
-                                    <p className="text-sm text-gray-500">Tagline here</p>
-                                </div>
-                            </div>
-                        </div>
-                        <nav className="mt-6">
-                            <ul>
-                                <li className="flex items-center p-4 text-gray-700 hover:bg-gray-100">
-                                    <i className="fas fa-tachometer-alt mr-3"></i>
-                                    <Link to={"/dashboard"}>Dashboard</Link> 
-                                </li>
-                                <li className="flex items-center p-4 text-gray-700 hover:bg-gray-100">
-                                    <i className="fas fa-user-md mr-3"></i>
-                                    <Link to={"/doctorMangement"}>Doctor Management</Link> 
-                                </li>
-                                <li className="flex items-center p-4 text-blue-500 bg-blue-100">
-                                    <i className="fas fa-users mr-3"></i>
-                                    <Link to={"/patientManagement"}>Patient Management</Link> 
-                                </li>
-                                <li className="flex items-center p-4 text-gray-700 hover:bg-gray-100">
-                                    <i className="fas fa-file-invoice-dollar mr-3"></i> Billing And Payments
-                                </li>
-                                <li className="flex items-center p-4 text-gray-700 hover:bg-gray-100">
-                                    <i className="fas fa-chart-line mr-3"></i> Reporting And Analytics
-                                </li>
-                            </ul>
-                        </nav>
-                        <div className="mt-28 w-full p-4">
-                            <button className="flex items-center p-4 text-red-500 hover:bg-red-100 w-full">
-                                <i className="fas fa-sign-out-alt mr-3"></i> Logout
-                            </button>
-                        </div>
-                    </aside>
+      <aside className="w-64 bg-white shadow-md">
+        <div className="p-6">
+          <div className="flex items-center">
+            <img
+              src="https://placehold.co/40x40"
+              alt="Hospital Logo"
+              className="w-10 h-10"
+            />
+            <div className="ml-3">
+              <h1 className="text-xl font-bold text-blue-600">Hospital</h1>
+              <p className="text-sm text-gray-500">Tagline here</p>
+            </div>
+          </div>
+        </div>
+        <nav className="mt-10">
+          <Link
+            to={"/dashboard"}
+            className="flex items-center py-2 px-6 "
+          >
+            <i className="fas fa-tachometer-alt mr-3 text-gray-600  hover:bg-blue-50 hover:text-blue-600"></i>
+            Dashboard
+          </Link>
+          <Link
+            to={"/doctorMangement"}
+            className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+          >
+            <i className="fas fa-user-md mr-3"></i>
+            Doctor Management
+          </Link>
+          <Link
+            to={"/patientManagement"}
+            className="flex items-center py-2 px-6 bg-blue-50 text-blue-600"
+          >
+            <i className="fas fa-users mr-3"></i>
+            Patient Management
+          </Link>
+          <div className="py-2 px-6 text-gray-600">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <i className="fas fa-file-invoice-dollar mr-3"></i>
+                Billing And Payments
+              </div>
+              <i className="fas fa-chevron-down"></i>
+            </div>
+            <div className="ml-6 mt-2">
+              <a
+                href="#"
+                className="block py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+              >
+                Submenu 1
+              </a>
+              <a
+                href="#"
+                className="block py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+              >
+                Submenu 2
+              </a>
+            </div>
+          </div>
+          <a
+            href="#"
+            className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+          >
+            <i className="fas fa-chart-line mr-3"></i>
+            Reporting And Analytics
+          </a>
+        </nav>
+        <div className="mt-auto p-6">
+          <a
+            href="#"
+            className="flex items-center py-2 px-6 text-red-600 hover:bg-red-50"
+          >
+            <i className="fas fa-sign-out-alt mr-3"></i>
+            Logout
+          </a>
+        </div>
+      </aside>
                     <main className="flex-1 p-6 max-w-[1100px] ml-auto">
                         <header className="flex justify-between items-center mb-6">
                             <h2 className="text-2xl font-bold">Patient Management</h2>

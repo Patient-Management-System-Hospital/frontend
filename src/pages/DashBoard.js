@@ -6,10 +6,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 const DashBoard = () => {
   const location = useLocation();
   const loggedInUser = location.state?.user;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleEditProfile = () => {
-    navigate("/edit", { state: { user: loggedInUser } }); 
+    navigate("/edit", { state: { user: loggedInUser } });
   };
   return (
     <div className="min-h-screen bg-gray-100 flex">
@@ -124,30 +124,40 @@ const DashBoard = () => {
           <h2 className="text-2xl font-bold text-blue-600">Profile Setting</h2>
           <div className="flex mt-6">
             <div className="w-1/3">
-              <div className="flex items-center text-center justify-center">
+              <div className="flex flex-col items-center">
                 <img
-                  src="https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg"
+                  src="https://placehold.co/100x100"
                   alt="Profile Picture"
-                  className="w-32 h-32 rounded-full object-cover inline-block mr-24"
+                  className="w-24 h-24 rounded-full"
                 />
-                <h3 className="mt-4 text-xl font-bold">
-                  {loggedInUser?.FirstName} {loggedInUser?.LastName}
-                </h3>
+                <h3 className="mt-4 text-xl font-semibold">Lincoln Philips</h3>
               </div>
               <div className="mt-6">
-                <h4 className="text-lg font-bold">Menu</h4>
+                <h4 className="text-lg font-semibold">Menu</h4>
                 <ul className="mt-4">
-                  <li className="py-2 px-4 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-md">
-                    <Link to={"/dashboard"}>Profile</Link>
+                  <li className="flex items-center px-4 py-2 bg-blue-100  text-blue-600 rounded-md">
+                    <i className="fas fa-user"></i>
+                    <Link to={"/dashboard"} className="ml-3">
+                      Profile
+                    </Link>
                   </li>
-                  <li className="py-2 px-4 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-md">
-                    <Link to={"/changePass"}>Change Password</Link>
+                  <li className="flex items-center px-4 py-2 hover:bg-blue-100 hover:text-blue-600 text-gray-700  rounded-md">
+                    <i className="fas fa-lock"></i>
+                    <Link to={"/changePass"} className="ml-3">
+                      Change Password
+                    </Link>
                   </li>
-                  <li className="py-2 px-4 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-md">
-                    <Link to={"/terms"} >Terms & Condition</Link>
+                  <li className="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-md">
+                    <i className="fas fa-file-alt"></i>
+                    <Link to={"/terms"} className="ml-3">
+                      Terms & Condition
+                    </Link>
                   </li>
-                  <li className="py-2 px-4 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-md">
-                    <Link to={"/privacy"}>Privacy Policy</Link>
+                  <li className="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-md">
+                    <i className="fas fa-shield-alt"></i>
+                    <Link to={"/privacy"} className="ml-3">
+                      Privacy Policy
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -247,7 +257,10 @@ const DashBoard = () => {
                 </div>
               </div>
               <div className="mt-6">
-                <button  onClick={handleEditProfile} className="px-6 py-2 bg-blue-600 text-white rounded-md">
+                <button
+                  onClick={handleEditProfile}
+                  className="px-6 py-2 bg-blue-600 text-white rounded-md"
+                >
                   Edit Profile
                 </button>
               </div>

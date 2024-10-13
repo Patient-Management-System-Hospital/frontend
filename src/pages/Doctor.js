@@ -142,7 +142,7 @@ const Doctor = () => {
                     <Link to={"/dashboard"}>Profile</Link>
                   </li>
                   <li className="py-2 px-4 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-md">
-                    <Link to={"/changePass"}>Change Password</Link>
+                    <Link to={"/docChangePass"}>Change Password</Link>
                   </li>
                   <li className="py-2 px-4 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-md">
                     <Link to={"/terms"} >Terms & Condition</Link>
