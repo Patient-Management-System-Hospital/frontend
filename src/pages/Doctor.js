@@ -139,16 +139,16 @@ const Doctor = () => {
                 <h4 className="text-lg font-bold">Menu</h4>
                 <ul className="mt-4">
                   <li className="py-2 px-4 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-md">
-                    <Link to={"/dashboard"}>Profile</Link>
+                    <Link to={"/doctor"}>Profile</Link>
                   </li>
                   <li className="py-2 px-4 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-md">
                     <Link to={"/docChangePass"}>Change Password</Link>
                   </li>
                   <li className="py-2 px-4 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-md">
-                    <Link to={"/terms"} >Terms & Condition</Link>
+                    <Link to={"/docTerms"} >Terms & Condition</Link>
                   </li>
                   <li className="py-2 px-4 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-md">
-                    <Link to={"/privacy"}>Privacy Policy</Link>
+                    <Link to={"/docPrivacy"}>Privacy Policy</Link>
                   </li>
                 </ul>
               </div>
