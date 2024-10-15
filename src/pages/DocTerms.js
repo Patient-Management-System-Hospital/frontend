@@ -1,55 +1,88 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-const TermCondition = () => {
+const DocTerms = () => {
   return (
     <div>
       <div className="flex h-screen">
-        <aside className="w-64 bg-white shadow-md">
-          <div className="p-6">
-            <div className="flex items-center">
-              <img
-                src="https://placehold.co/40x40"
-                alt="Hospital Logo"
-                className="w-10 h-10"
-              />
-              <div className="ml-3">
-                <h1 className="text-xl font-bold text-blue-600">Hospital</h1>
-                <p className="text-sm text-gray-500">Tagline here</p>
-              </div>
+      <aside className="w-64 bg-white shadow-md">
+        <div className="p-6">
+          <div className="flex items-center">
+            <img
+              src="https://placehold.co/40x40"
+              alt="Hospital Logo"
+              className="w-10 h-10"
+            />
+            <div className="ml-3">
+              <h1 className="text-xl font-bold text-blue-600">Hospital</h1>
+              <p className="text-sm text-gray-500">Tagline here</p>
             </div>
           </div>
-          <nav className="mt-6">
-            <ul>
-              <li className="flex items-center p-3 text-gray-700 hover:bg-gray-200">
-                <i className="fas fa-tachometer-alt"></i>
-                <span className="ml-3">Dashboard</span>
-              </li>
-              <li className="flex items-center p-3 text-gray-700 hover:bg-gray-200">
-                <i className="fas fa-user-md"></i>
-                <span className="ml-3">Doctor Management</span>
-              </li>
-              <li className="flex items-center p-3 text-gray-700 hover:bg-gray-200">
-                <i className="fas fa-users"></i>
-                <span className="ml-3">Patient Management</span>
-              </li>
-              <li className="flex items-center p-3 text-gray-700 hover:bg-gray-200">
-                <i className="fas fa-file-invoice-dollar"></i>
-                <span className="ml-3">Billing And Payments</span>
-              </li>
-              <li className="flex items-center p-3 text-gray-700 hover:bg-gray-200">
-                <i className="fas fa-chart-line"></i>
-                <span className="ml-3">Reporting And Analytics</span>
-              </li>
-            </ul>
-          </nav>
-          <div className="mt-auto p-6">
-            <button className="flex items-center p-3 text-red-600 hover:bg-red-100 w-full">
-              <i className="fas fa-sign-out-alt"></i>
-              <span className="ml-3">Logout</span>
-            </button>
+        </div>
+        <nav className="mt-10">
+          <Link
+            to={""}
+            className="flex items-center py-2 px-6 bg-blue-50 text-blue-600 text-sm"
+          >
+            <i class="fa-solid fa-calendar-days mr-3"></i>
+            Appointment Management
+          </Link>
+          <Link
+            to={""}
+            className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600 text-sm"
+          >
+            <i class="fa-solid fa-clipboard mr-3"></i>
+            Patient Record Access
+          </Link>
+          
+          <div className="py-2 px-6 text-gray-600">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center text-sm">
+              <i class="fa-solid fa-briefcase-medical mr-2"></i>
+                Priscription Tools
+              </div>
+              <i className="fas fa-chevron-down"></i>
+            </div>
+            <div className="ml-6 mt-2">
+              <a
+                href="#"
+                className="block py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 text-sm"
+              >
+                Submenu 1
+              </a>
+              <a
+                href="#"
+                className="block py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 text-sm"
+              >
+                Submenu 2
+              </a>
+            </div>
           </div>
-        </aside>
+          <Link
+            to={""}
+            className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600 text-sm"
+          >
+            <i class="fa-solid fa-phone mr-2"></i>
+            Teleconsulation Module
+          </Link>
+          <a
+            href="#"
+            className="flex items-center py-2 px-6 text-gray-600 hover:bg-blue-50 hover:text-blue-600 text-sm"
+          >
+            <i class="fa-solid fa-message mr-2"></i>
+            Chat
+          </a>
+        </nav>
+        <div className="mt-auto p-6">
+          <a
+            href="#"
+            className="flex items-center py-2 px-6 text-red-600 hover:bg-red-50"
+          >
+            <i className="fas fa-sign-out-alt mr-3"></i>
+            Logout
+          </a>
+        </div>
+      </aside>
         <main className="flex-1 bg-gray-100 p-6">
           <div className="flex items-center justify-between">
             <div className="text-gray-600">
@@ -202,7 +235,7 @@ const TermCondition = () => {
         </main>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TermCondition;
+export default DocTerms

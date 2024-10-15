@@ -25,6 +25,8 @@ import PatientManagement from "./pages/PatientManagement";
 import Doctor from "./pages/Doctor";
 import DoctorEdit from "./pages/DoctorEdit";
 import DocChangePass from "./pages/DocChangePass";
+import DocPrivacy from "./pages/DocPrivacy";
+import DocTerms from "./pages/DocTerms";
 
 function App() {
   return (
@@ -46,6 +48,8 @@ function App() {
         <Route path="/addDoc" element={<AddDoctor/>}/>
         <Route path="/doctor" element={<Doctor/>}/>
         <Route path="/docChangePass" element={<DocChangePass/>}/>
+        <Route path="/docPrivacy" element={<DocPrivacy/>}/>
+        <Route path="/docTerms" element={<DocTerms/>}/>
         <Route path="/doctorEdit" element={<DoctorEdit/>}/>
         <Route path="/patient" element={<Patient/>}/>
         <Route path="/patientDetails" element={<PatientDetails/>}/>
