@@ -27,6 +27,9 @@ import DoctorEdit from "./pages/DoctorEdit";
 import DocChangePass from "./pages/DocChangePass";
 import DocPrivacy from "./pages/DocPrivacy";
 import DocTerms from "./pages/DocTerms";
+import Calender from "./componets/Calender";
+import AppointmentsPage from "./pages/AppointmentsPage";
+import CreateAppointmentPage from "./pages/CreateAppointmentPage";
 
 function App() {
   return (
@@ -60,6 +63,8 @@ function App() {
         <Route path="/previousAppointment" element={<PreviousAppointment/>}/>
         <Route path="/cancelAppointment" element={<CancelAppointment/>}/>
         <Route path="/pendingAppointment" element={<PendingAppointment/>}/>
+        <Route path="/appointments" element={<AppointmentsPage/>}/>
+        <Route path="/create-appointment" element={<CreateAppointmentPage/>}/>
       </Routes>
     </BrowserRouter>
     
