@@ -30,6 +30,7 @@ import DocTerms from "./pages/DocTerms";
 import Calender from "./componets/Calender";
 import AppointmentsPage from "./pages/AppointmentsPage";
 import CreateAppointmentPage from "./pages/CreateAppointmentPage";
+import AppointmentSlot from "./pages/AppointmentSlot";
 
 function App() {
   return (
@@ -65,6 +66,7 @@ function App() {
         <Route path="/pendingAppointment" element={<PendingAppointment/>}/>
         <Route path="/appointments" element={<AppointmentsPage/>}/>
         <Route path="/create-appointment" element={<CreateAppointmentPage/>}/>
+        <Route path="/appoinment-timeslot" element={<AppointmentSlot/>}/>
       </Routes>
     </BrowserRouter>
     
