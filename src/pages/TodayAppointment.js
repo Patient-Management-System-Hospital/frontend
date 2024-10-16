@@ -3,6 +3,9 @@ import img from "../images/Frame 1116602772.png"
 import { Link } from "react-router-dom";
 
 const TodayAppointment = () => {
+
+    
+
   return (
     <div>
       <div className="flex h-screen">
@@ -114,6 +117,7 @@ const TodayAppointment = () => {
               </div>
             </div>
           </header>
+          
           <div className="mt-6">
             <div className="flex items-center border-b">
               <button className="px-4 py-2 text-blue-600 border-b-2 border-blue-600">
