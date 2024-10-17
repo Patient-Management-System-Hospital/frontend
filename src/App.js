@@ -32,6 +32,7 @@ import AppointmentsPage from "./pages/AppointmentsPage";
 import CreateAppointmentPage from "./pages/CreateAppointmentPage";
 import AppointmentSlot from "./pages/AppointmentSlot";
 import TodayAppointment from "./pages/TodayAppointment";
+import CreateBill from "./pages/CreateBill";
 
 function App() {
   return (
@@ -69,6 +70,7 @@ function App() {
         <Route path="/create-appointment" element={<CreateAppointmentPage/>}/>
         <Route path="/appoinment-timeslot" element={<AppointmentSlot/>}/>
         <Route path="/today-appoinment" element={<TodayAppointment/>}/>
+        <Route path="/create-bill" element={<CreateBill/>}/>
       </Routes>
     </BrowserRouter>
     
