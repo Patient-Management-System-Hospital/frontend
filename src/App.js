@@ -31,6 +31,7 @@ import Calender from "./componets/Calender";
 import AppointmentsPage from "./pages/AppointmentsPage";
 import CreateAppointmentPage from "./pages/CreateAppointmentPage";
 import AppointmentSlot from "./pages/AppointmentSlot";
+import TodayAppointment from "./pages/TodayAppointment";
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
         <Route path="/appointments" element={<AppointmentsPage/>}/>
         <Route path="/create-appointment" element={<CreateAppointmentPage/>}/>
         <Route path="/appoinment-timeslot" element={<AppointmentSlot/>}/>
+        <Route path="/today-appoinment" element={<TodayAppointment/>}/>
       </Routes>
     </BrowserRouter>
     
